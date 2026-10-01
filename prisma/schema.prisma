@@ -8,15 +8,59 @@ datasource db {
 }
 
 model User {
-  id    String   @id @default(uuid())
-  email String @unique
-  name  String
-  password String
-  role Role @default(USER)
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String
+  password  String
+  role      Role     @default(USER)
   createdAt DateTime @default(now())
 }
 
 enum Role {
   USER
   ADMIN
+}
+
+model Item {
+  id          String     @id @default(uuid())
+  name        String
+  description String?
+  tipping     Int
+  value       Decimal
+  category    Categoria
+  state       EstadoItem
+  quantity    Int
+  createdAt   DateTime   @default(now())
+}
+
+enum EstadoItem {
+  ATIVO
+  EXTRAVIADO
+  MANUTENÇÃO
+  DANIFICADO
+}
+
+enum Categoria {
+  ELETRÔNICO
+  MÓVEIS
+  MATERIAIS
+  CLIMATIZAÇÃO
+  HIGIENIZAÇÃO
+  ESPORTE
+}
+
+model Bloco {
+  id        String     @id @default(uuid())
+  numero    Int?
+  ambientes Ambiente[]
+}
+
+model Ambiente {
+  id      String @id @default(uuid())
+  name    String
+  blocoId String
+
+  bloco Bloco @relation(fields: [blocoId], references: [id])
+
+  @@unique([blocoId, name])
 }

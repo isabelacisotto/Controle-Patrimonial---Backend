@@ -4,7 +4,7 @@ import {
   validateForgotPassword,
   validateLogin,
   validateUser,
-} from "../validations/user.validations";
+} from "../utils/validations/user.validations";
 import nodemailer from "nodemailer";
 import jwt from "jsonwebtoken";
 

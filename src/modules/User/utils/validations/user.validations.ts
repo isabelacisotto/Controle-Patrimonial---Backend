@@ -1,4 +1,4 @@
-import type { UserDTO } from "../dtos/user.dto";
+import type { UserDTO } from "../../dtos/user.dto";
 
 function validateEmail(email: string): void {
     if (!email) throw new Error("Email is required");
