@@ -112,7 +112,7 @@ export type UnidadeItemScalarFieldEnum = (typeof UnidadeItemScalarFieldEnum)[key
 
 export const AmbienteScalarFieldEnum = {
   id: 'id',
-  name: 'name',
+  nome: 'nome',
   blocoId: 'blocoId',
   responsavel: 'responsavel'
 } as const

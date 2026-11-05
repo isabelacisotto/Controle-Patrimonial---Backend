@@ -26,21 +26,21 @@ export type AggregateAmbiente = {
 
 export type AmbienteMinAggregateOutputType = {
   id: string | null
-  name: string | null
+  nome: string | null
   blocoId: string | null
   responsavel: string | null
 }
 
 export type AmbienteMaxAggregateOutputType = {
   id: string | null
-  name: string | null
+  nome: string | null
   blocoId: string | null
   responsavel: string | null
 }
 
 export type AmbienteCountAggregateOutputType = {
   id: number
-  name: number
+  nome: number
   blocoId: number
   responsavel: number
   _all: number
@@ -49,21 +49,21 @@ export type AmbienteCountAggregateOutputType = {
 
 export type AmbienteMinAggregateInputType = {
   id?: true
-  name?: true
+  nome?: true
   blocoId?: true
   responsavel?: true
 }
 
 export type AmbienteMaxAggregateInputType = {
   id?: true
-  name?: true
+  nome?: true
   blocoId?: true
   responsavel?: true
 }
 
 export type AmbienteCountAggregateInputType = {
   id?: true
-  name?: true
+  nome?: true
   blocoId?: true
   responsavel?: true
   _all?: true
@@ -143,7 +143,7 @@ export type AmbienteGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
 
 export type AmbienteGroupByOutputType = {
   id: string
-  name: string
+  nome: string
   blocoId: string
   responsavel: string
   _count: AmbienteCountAggregateOutputType | null
@@ -171,7 +171,7 @@ export type AmbienteWhereInput = {
   OR?: Prisma.AmbienteWhereInput[]
   NOT?: Prisma.AmbienteWhereInput | Prisma.AmbienteWhereInput[]
   id?: Prisma.StringFilter<"Ambiente"> | string
-  name?: Prisma.StringFilter<"Ambiente"> | string
+  nome?: Prisma.StringFilter<"Ambiente"> | string
   blocoId?: Prisma.StringFilter<"Ambiente"> | string
   responsavel?: Prisma.StringFilter<"Ambiente"> | string
   bloco?: Prisma.XOR<Prisma.BlocoScalarRelationFilter, Prisma.BlocoWhereInput>
@@ -180,7 +180,7 @@ export type AmbienteWhereInput = {
 
 export type AmbienteOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  name?: Prisma.SortOrder
+  nome?: Prisma.SortOrder
   blocoId?: Prisma.SortOrder
   responsavel?: Prisma.SortOrder
   bloco?: Prisma.BlocoOrderByWithRelationInput
@@ -189,20 +189,20 @@ export type AmbienteOrderByWithRelationInput = {
 
 export type AmbienteWhereUniqueInput = Prisma.AtLeast<{
   id?: string
-  blocoId_name?: Prisma.AmbienteBlocoIdNameCompoundUniqueInput
+  blocoId_nome?: Prisma.AmbienteBlocoIdNomeCompoundUniqueInput
   AND?: Prisma.AmbienteWhereInput | Prisma.AmbienteWhereInput[]
   OR?: Prisma.AmbienteWhereInput[]
   NOT?: Prisma.AmbienteWhereInput | Prisma.AmbienteWhereInput[]
-  name?: Prisma.StringFilter<"Ambiente"> | string
+  nome?: Prisma.StringFilter<"Ambiente"> | string
   blocoId?: Prisma.StringFilter<"Ambiente"> | string
   responsavel?: Prisma.StringFilter<"Ambiente"> | string
   bloco?: Prisma.XOR<Prisma.BlocoScalarRelationFilter, Prisma.BlocoWhereInput>
   unidades?: Prisma.UnidadeItemListRelationFilter
-}, "id" | "blocoId_name">
+}, "id" | "blocoId_nome">
 
 export type AmbienteOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  name?: Prisma.SortOrder
+  nome?: Prisma.SortOrder
   blocoId?: Prisma.SortOrder
   responsavel?: Prisma.SortOrder
   _count?: Prisma.AmbienteCountOrderByAggregateInput
@@ -215,14 +215,14 @@ export type AmbienteScalarWhereWithAggregatesInput = {
   OR?: Prisma.AmbienteScalarWhereWithAggregatesInput[]
   NOT?: Prisma.AmbienteScalarWhereWithAggregatesInput | Prisma.AmbienteScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Ambiente"> | string
-  name?: Prisma.StringWithAggregatesFilter<"Ambiente"> | string
+  nome?: Prisma.StringWithAggregatesFilter<"Ambiente"> | string
   blocoId?: Prisma.StringWithAggregatesFilter<"Ambiente"> | string
   responsavel?: Prisma.StringWithAggregatesFilter<"Ambiente"> | string
 }
 
 export type AmbienteCreateInput = {
   id?: string
-  name: string
+  nome: string
   responsavel: string
   bloco: Prisma.BlocoCreateNestedOneWithoutAmbientesInput
   unidades?: Prisma.UnidadeItemCreateNestedManyWithoutAmbienteInput
@@ -230,7 +230,7 @@ export type AmbienteCreateInput = {
 
 export type AmbienteUncheckedCreateInput = {
   id?: string
-  name: string
+  nome: string
   blocoId: string
   responsavel: string
   unidades?: Prisma.UnidadeItemUncheckedCreateNestedManyWithoutAmbienteInput
@@ -238,7 +238,7 @@ export type AmbienteUncheckedCreateInput = {
 
 export type AmbienteUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
   responsavel?: Prisma.StringFieldUpdateOperationsInput | string
   bloco?: Prisma.BlocoUpdateOneRequiredWithoutAmbientesNestedInput
   unidades?: Prisma.UnidadeItemUpdateManyWithoutAmbienteNestedInput
@@ -246,7 +246,7 @@ export type AmbienteUpdateInput = {
 
 export type AmbienteUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
   blocoId?: Prisma.StringFieldUpdateOperationsInput | string
   responsavel?: Prisma.StringFieldUpdateOperationsInput | string
   unidades?: Prisma.UnidadeItemUncheckedUpdateManyWithoutAmbienteNestedInput
@@ -254,20 +254,20 @@ export type AmbienteUncheckedUpdateInput = {
 
 export type AmbienteCreateManyInput = {
   id?: string
-  name: string
+  nome: string
   blocoId: string
   responsavel: string
 }
 
 export type AmbienteUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
   responsavel?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type AmbienteUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
   blocoId?: Prisma.StringFieldUpdateOperationsInput | string
   responsavel?: Prisma.StringFieldUpdateOperationsInput | string
 }
@@ -277,28 +277,28 @@ export type AmbienteNullableScalarRelationFilter = {
   isNot?: Prisma.AmbienteWhereInput | null
 }
 
-export type AmbienteBlocoIdNameCompoundUniqueInput = {
+export type AmbienteBlocoIdNomeCompoundUniqueInput = {
   blocoId: string
-  name: string
+  nome: string
 }
 
 export type AmbienteCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  name?: Prisma.SortOrder
+  nome?: Prisma.SortOrder
   blocoId?: Prisma.SortOrder
   responsavel?: Prisma.SortOrder
 }
 
 export type AmbienteMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  name?: Prisma.SortOrder
+  nome?: Prisma.SortOrder
   blocoId?: Prisma.SortOrder
   responsavel?: Prisma.SortOrder
 }
 
 export type AmbienteMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  name?: Prisma.SortOrder
+  nome?: Prisma.SortOrder
   blocoId?: Prisma.SortOrder
   responsavel?: Prisma.SortOrder
 }
@@ -373,14 +373,14 @@ export type AmbienteUncheckedUpdateManyWithoutBlocoNestedInput = {
 
 export type AmbienteCreateWithoutUnidadesInput = {
   id?: string
-  name: string
+  nome: string
   responsavel: string
   bloco: Prisma.BlocoCreateNestedOneWithoutAmbientesInput
 }
 
 export type AmbienteUncheckedCreateWithoutUnidadesInput = {
   id?: string
-  name: string
+  nome: string
   blocoId: string
   responsavel: string
 }
@@ -403,28 +403,28 @@ export type AmbienteUpdateToOneWithWhereWithoutUnidadesInput = {
 
 export type AmbienteUpdateWithoutUnidadesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
   responsavel?: Prisma.StringFieldUpdateOperationsInput | string
   bloco?: Prisma.BlocoUpdateOneRequiredWithoutAmbientesNestedInput
 }
 
 export type AmbienteUncheckedUpdateWithoutUnidadesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
   blocoId?: Prisma.StringFieldUpdateOperationsInput | string
   responsavel?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type AmbienteCreateWithoutBlocoInput = {
   id?: string
-  name: string
+  nome: string
   responsavel: string
   unidades?: Prisma.UnidadeItemCreateNestedManyWithoutAmbienteInput
 }
 
 export type AmbienteUncheckedCreateWithoutBlocoInput = {
   id?: string
-  name: string
+  nome: string
   responsavel: string
   unidades?: Prisma.UnidadeItemUncheckedCreateNestedManyWithoutAmbienteInput
 }
@@ -459,34 +459,34 @@ export type AmbienteScalarWhereInput = {
   OR?: Prisma.AmbienteScalarWhereInput[]
   NOT?: Prisma.AmbienteScalarWhereInput | Prisma.AmbienteScalarWhereInput[]
   id?: Prisma.StringFilter<"Ambiente"> | string
-  name?: Prisma.StringFilter<"Ambiente"> | string
+  nome?: Prisma.StringFilter<"Ambiente"> | string
   blocoId?: Prisma.StringFilter<"Ambiente"> | string
   responsavel?: Prisma.StringFilter<"Ambiente"> | string
 }
 
 export type AmbienteCreateManyBlocoInput = {
   id?: string
-  name: string
+  nome: string
   responsavel: string
 }
 
 export type AmbienteUpdateWithoutBlocoInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
   responsavel?: Prisma.StringFieldUpdateOperationsInput | string
   unidades?: Prisma.UnidadeItemUpdateManyWithoutAmbienteNestedInput
 }
 
 export type AmbienteUncheckedUpdateWithoutBlocoInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
   responsavel?: Prisma.StringFieldUpdateOperationsInput | string
   unidades?: Prisma.UnidadeItemUncheckedUpdateManyWithoutAmbienteNestedInput
 }
 
 export type AmbienteUncheckedUpdateManyWithoutBlocoInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
   responsavel?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -523,7 +523,7 @@ export type AmbienteCountOutputTypeCountUnidadesArgs<ExtArgs extends runtime.Typ
 
 export type AmbienteSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  name?: boolean
+  nome?: boolean
   blocoId?: boolean
   responsavel?: boolean
   bloco?: boolean | Prisma.BlocoDefaultArgs<ExtArgs>
@@ -533,7 +533,7 @@ export type AmbienteSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
 
 export type AmbienteSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  name?: boolean
+  nome?: boolean
   blocoId?: boolean
   responsavel?: boolean
   bloco?: boolean | Prisma.BlocoDefaultArgs<ExtArgs>
@@ -541,7 +541,7 @@ export type AmbienteSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
 
 export type AmbienteSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  name?: boolean
+  nome?: boolean
   blocoId?: boolean
   responsavel?: boolean
   bloco?: boolean | Prisma.BlocoDefaultArgs<ExtArgs>
@@ -549,12 +549,12 @@ export type AmbienteSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
 
 export type AmbienteSelectScalar = {
   id?: boolean
-  name?: boolean
+  nome?: boolean
   blocoId?: boolean
   responsavel?: boolean
 }
 
-export type AmbienteOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "blocoId" | "responsavel", ExtArgs["result"]["ambiente"]>
+export type AmbienteOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nome" | "blocoId" | "responsavel", ExtArgs["result"]["ambiente"]>
 export type AmbienteInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   bloco?: boolean | Prisma.BlocoDefaultArgs<ExtArgs>
   unidades?: boolean | Prisma.Ambiente$unidadesArgs<ExtArgs>
@@ -575,7 +575,7 @@ export type $AmbientePayload<ExtArgs extends runtime.Types.Extensions.InternalAr
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    name: string
+    nome: string
     blocoId: string
     responsavel: string
   }, ExtArgs["result"]["ambiente"]>
@@ -1004,7 +1004,7 @@ export interface Prisma__AmbienteClient<T, Null = never, ExtArgs extends runtime
  */
 export interface AmbienteFieldRefs {
   readonly id: Prisma.FieldRef<"Ambiente", 'String'>
-  readonly name: Prisma.FieldRef<"Ambiente", 'String'>
+  readonly nome: Prisma.FieldRef<"Ambiente", 'String'>
   readonly blocoId: Prisma.FieldRef<"Ambiente", 'String'>
   readonly responsavel: Prisma.FieldRef<"Ambiente", 'String'>
 }

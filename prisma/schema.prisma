@@ -22,54 +22,60 @@ enum Role {
 }
 
 model Item {
-  id          String        @id @default(uuid())
-  tombamento  Int
-  nome        String
-  descricao   String?
-  valor       Decimal
-  categoria   Categoria
-  marca       String
-  quantidade  Int
-  createdAt   DateTime      @default(now())
+  id         String    @id @default(uuid())
+  tombamento Int
+  nome       String
+  descricao  String?
+  valor      Decimal
+  categoria  Categoria
+  marca      String
+  quantidade Int
+  createdAt  DateTime  @default(now())
 
-  unidades    UnidadeItem[]
+  unidades UnidadeItem[]
 }
 
 model UnidadeItem {
-  id             String         @id @default(uuid())
-  estado         EstadoItem     @default(ATIVO)
+  id     String     @id @default(uuid())
+  estado EstadoItem @default(ATIVO)
 
-  itemId         String
-  item           Item           @relation(fields: [itemId], references: [id])
+  itemId String
+  item   Item   @relation(fields: [itemId], references: [id])
 
-  ambienteId     String?
-  ambiente       Ambiente?      @relation(fields: [ambienteId], references: [id])
+  ambienteId String?
+  ambiente   Ambiente? @relation(fields: [ambienteId], references: [id])
 
-  movimentacoes  Movimentacao[]
+  movimentacoes Movimentacao[]
 
-  createdAt      DateTime       @default(now())
+  createdAt DateTime @default(now())
+}
+
+model Bloco {
+  id        String     @id @default(uuid())
+  numero    Int?
+  ambientes Ambiente[]
 }
 
 model Ambiente {
-  id          String        @id @default(uuid())
-  name        String
+  id          String @id @default(uuid())
+  nome        String
   blocoId     String
   responsavel String
 
-  bloco       Bloco         @relation(fields: [blocoId], references: [id])
-  unidades    UnidadeItem[]
+  bloco    Bloco         @relation(fields: [blocoId], references: [id])
+  unidades UnidadeItem[]
 
-  @@unique([blocoId, name])
+  @@unique([blocoId, nome])
 }
 
 model Movimentacao {
-  id             String      @id @default(uuid())
-  unidadeItemId  String
-  unidadeItem    UnidadeItem @relation(fields: [unidadeItemId], references: [id])
+  id            String      @id @default(uuid())
+  unidadeItemId String
+  unidadeItem   UnidadeItem @relation(fields: [unidadeItemId], references: [id])
 
-  origem         String
-  destino        String
-  resp           String
+  origem  String
+  destino String
+  resp    String
 
   dataMovimentacao DateTime @default(now())
 }
@@ -88,10 +94,4 @@ enum Categoria {
   CLIMATIZAÇÃO
   HIGIENIZAÇÃO
   ESPORTE
-}
-
-model Bloco {
-  id        String     @id @default(uuid())
-  numero    Int?
-  ambientes Ambiente[]
 }
