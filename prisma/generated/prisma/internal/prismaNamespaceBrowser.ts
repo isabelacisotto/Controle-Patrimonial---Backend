@@ -51,7 +51,12 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  User: 'User'
+  User: 'User',
+  Item: 'Item',
+  UnidadeItem: 'UnidadeItem',
+  Ambiente: 'Ambiente',
+  Movimentacao: 'Movimentacao',
+  Bloco: 'Bloco'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -79,10 +84,74 @@ export const UserScalarFieldEnum = {
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
+export const ItemScalarFieldEnum = {
+  id: 'id',
+  tombamento: 'tombamento',
+  nome: 'nome',
+  descricao: 'descricao',
+  valor: 'valor',
+  categoria: 'categoria',
+  marca: 'marca',
+  quantidade: 'quantidade',
+  createdAt: 'createdAt'
+} as const
+
+export type ItemScalarFieldEnum = (typeof ItemScalarFieldEnum)[keyof typeof ItemScalarFieldEnum]
+
+
+export const UnidadeItemScalarFieldEnum = {
+  id: 'id',
+  estado: 'estado',
+  itemId: 'itemId',
+  ambienteId: 'ambienteId',
+  createdAt: 'createdAt'
+} as const
+
+export type UnidadeItemScalarFieldEnum = (typeof UnidadeItemScalarFieldEnum)[keyof typeof UnidadeItemScalarFieldEnum]
+
+
+export const AmbienteScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  blocoId: 'blocoId',
+  responsavel: 'responsavel'
+} as const
+
+export type AmbienteScalarFieldEnum = (typeof AmbienteScalarFieldEnum)[keyof typeof AmbienteScalarFieldEnum]
+
+
+export const MovimentacaoScalarFieldEnum = {
+  id: 'id',
+  unidadeItemId: 'unidadeItemId',
+  origem: 'origem',
+  destino: 'destino',
+  resp: 'resp',
+  dataMovimentacao: 'dataMovimentacao'
+} as const
+
+export type MovimentacaoScalarFieldEnum = (typeof MovimentacaoScalarFieldEnum)[keyof typeof MovimentacaoScalarFieldEnum]
+
+
+export const BlocoScalarFieldEnum = {
+  id: 'id',
+  numero: 'numero'
+} as const
+
+export type BlocoScalarFieldEnum = (typeof BlocoScalarFieldEnum)[keyof typeof BlocoScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
 } as const
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 

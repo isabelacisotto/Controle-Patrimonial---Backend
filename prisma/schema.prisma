@@ -22,15 +22,56 @@ enum Role {
 }
 
 model Item {
-  id          String     @id @default(uuid())
+  id          String        @id @default(uuid())
+  tombamento  Int
+  nome        String
+  descricao   String?
+  valor       Decimal
+  categoria   Categoria
+  marca       String
+  quantidade  Int
+  createdAt   DateTime      @default(now())
+
+  unidades    UnidadeItem[]
+}
+
+model UnidadeItem {
+  id             String         @id @default(uuid())
+  estado         EstadoItem     @default(ATIVO)
+
+  itemId         String
+  item           Item           @relation(fields: [itemId], references: [id])
+
+  ambienteId     String?
+  ambiente       Ambiente?      @relation(fields: [ambienteId], references: [id])
+
+  movimentacoes  Movimentacao[]
+
+  createdAt      DateTime       @default(now())
+}
+
+model Ambiente {
+  id          String        @id @default(uuid())
   name        String
-  description String?
-  tipping     Int
-  value       Decimal
-  category    Categoria
-  state       EstadoItem
-  quantity    Int
-  createdAt   DateTime   @default(now())
+  blocoId     String
+  responsavel String
+
+  bloco       Bloco         @relation(fields: [blocoId], references: [id])
+  unidades    UnidadeItem[]
+
+  @@unique([blocoId, name])
+}
+
+model Movimentacao {
+  id             String      @id @default(uuid())
+  unidadeItemId  String
+  unidadeItem    UnidadeItem @relation(fields: [unidadeItemId], references: [id])
+
+  origem         String
+  destino        String
+  resp           String
+
+  dataMovimentacao DateTime @default(now())
 }
 
 enum EstadoItem {
@@ -53,14 +94,4 @@ model Bloco {
   id        String     @id @default(uuid())
   numero    Int?
   ambientes Ambiente[]
-}
-
-model Ambiente {
-  id      String @id @default(uuid())
-  name    String
-  blocoId String
-
-  bloco Bloco @relation(fields: [blocoId], references: [id])
-
-  @@unique([blocoId, name])
 }

@@ -15,3 +15,25 @@ export const Role = {
 } as const
 
 export type Role = (typeof Role)[keyof typeof Role]
+
+
+export const EstadoItem = {
+  ATIVO: 'ATIVO',
+  EXTRAVIADO: 'EXTRAVIADO',
+  MANUTENÇÃO: 'MANUTENÇÃO',
+  DANIFICADO: 'DANIFICADO'
+} as const
+
+export type EstadoItem = (typeof EstadoItem)[keyof typeof EstadoItem]
+
+
+export const Categoria = {
+  ELETRÔNICO: 'ELETRÔNICO',
+  MÓVEIS: 'MÓVEIS',
+  MATERIAIS: 'MATERIAIS',
+  CLIMATIZAÇÃO: 'CLIMATIZAÇÃO',
+  HIGIENIZAÇÃO: 'HIGIENIZAÇÃO',
+  ESPORTE: 'ESPORTE'
+} as const
+
+export type Categoria = (typeof Categoria)[keyof typeof Categoria]

@@ -22,3 +22,28 @@ export * from './enums';
  * 
  */
 export type User = Prisma.UserModel
+/**
+ * Model Item
+ * 
+ */
+export type Item = Prisma.ItemModel
+/**
+ * Model UnidadeItem
+ * 
+ */
+export type UnidadeItem = Prisma.UnidadeItemModel
+/**
+ * Model Ambiente
+ * 
+ */
+export type Ambiente = Prisma.AmbienteModel
+/**
+ * Model Movimentacao
+ * 
+ */
+export type Movimentacao = Prisma.MovimentacaoModel
+/**
+ * Model Bloco
+ * 
+ */
+export type Bloco = Prisma.BlocoModel

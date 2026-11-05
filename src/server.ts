@@ -7,6 +7,7 @@ const handler = new UserHandler();
 
 app.use(Express.json());
 
+// User
 app.post('/login', (req, res) => handler.loginUser(req, res));
 app.post('/register', (req, res) => handler.createUser(req, res));
 app.post('/forgot-password', (req, res) => handler.forgotPassword(req, res));
