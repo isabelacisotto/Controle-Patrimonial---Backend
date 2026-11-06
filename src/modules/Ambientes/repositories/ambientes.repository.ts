@@ -2,6 +2,22 @@ import { prisma } from "../../../../prisma/prisma";
 import type { Ambiente } from "../dtos/ambiente.dto";
 
 export class AmbientesRepository {
+  public async obterAmbientePorId(id: string): Promise<Ambiente | null> {
+    const ambiente = await prisma.ambiente.findUnique({
+      where: { id },
+      include: {
+        unidades: {
+          include: {
+            item: true,
+            ambiente: true
+          }
+        }
+      }
+    });
+
+    return ambiente;
+  }
+
   public async listarAmbientes(): Promise<Ambiente[]> {
     const ambientes = await prisma.ambiente.findMany({ 
         include: { 

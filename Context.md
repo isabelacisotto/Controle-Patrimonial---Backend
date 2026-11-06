@@ -13,5 +13,5 @@ Cada módulo terá como principais camadas:
 
 
 `
-    Módulos principais: { Users, heritage, environments, maintenance, movements }
+    Módulos principais: { Users, Ambientes, Patrimonio/Itens, movimentacao, bloco }
 `
