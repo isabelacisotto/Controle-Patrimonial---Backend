@@ -1,5 +1,6 @@
 import type { Request, Response } from "express";
 import type {
+  AtualizarEstadoUnidadeDTO,
   AtualizarPatrimonioDTO,
   CriarPatrimonioDTO
 } from "../dtos/patrimonio.dto";
@@ -38,6 +39,14 @@ export class PatrimonioHandler {
   public async deletarPatrimonio(req: Request<{ id: string }>, res: Response): Promise<void> {
     await this.patrimonioService.deletarPatrimonio(req.params.id);
     res.status(200).json({ message: "Patrimônio deletado com sucesso." });
+  }
+
+  public async atualizarEstadoUnidade(
+    req: Request<{ id: string }, {}, AtualizarEstadoUnidadeDTO>,
+    res: Response,
+  ): Promise<void> {
+    await this.patrimonioService.atualizarEstadoUnidade(req.params.id, req.body);
+    res.status(200).json({ message: "Situação da unidade atualizada com sucesso." });
   }
 }
 

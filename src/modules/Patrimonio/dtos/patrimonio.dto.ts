@@ -47,3 +47,7 @@ export interface CriarPatrimonioDTO {
 }
 
 export type AtualizarPatrimonioDTO = Partial<CriarPatrimonioDTO>;
+
+export interface AtualizarEstadoUnidadeDTO {
+  estado: EstadoItem;
+}

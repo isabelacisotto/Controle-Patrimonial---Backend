@@ -1,9 +1,11 @@
 import type {
+  AtualizarEstadoUnidadeDTO,
   AtualizarPatrimonioDTO,
   CriarPatrimonioDTO,
   Patrimonio,
   PatrimonioComUnidades
 } from "../dtos/patrimonio.dto";
+import { EstadoItem } from "../../../../prisma/generated/prisma/enums";
 import { PatrimonioRepository } from "../repositories/patrimonio.repository";
 import {
   validarAtualizacaoPatrimonio,
@@ -42,5 +44,18 @@ export class PatrimonioService {
       throw new Error("Não é possível excluir um patrimônio que possui unidades cadastradas.");
     }
     await this.patrimonioRepository.excluirPatrimonio(id);
+  }
+
+  public async atualizarEstadoUnidade(
+    id: string,
+    data: AtualizarEstadoUnidadeDTO,
+  ): Promise<void> {
+    if (!data || !Object.values(EstadoItem).includes(data.estado)) {
+      throw new Error("Situação da unidade inválida.");
+    }
+    if (!(await this.patrimonioRepository.unidadeItemExiste(id))) {
+      throw new Error("Unidade de patrimônio não encontrada.");
+    }
+    await this.patrimonioRepository.atualizarEstadoUnidade(id, data);
   }
 }

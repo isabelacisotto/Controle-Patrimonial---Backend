@@ -1,5 +1,6 @@
 import { prisma } from "../../../../prisma/prisma";
 import type {
+  AtualizarEstadoUnidadeDTO,
   AtualizarPatrimonioDTO,
   CriarPatrimonioDTO,
   Patrimonio,
@@ -38,5 +39,23 @@ export class PatrimonioRepository {
 
   public async excluirPatrimonio(id: string): Promise<void> {
     await prisma.item.delete({ where: { id } });
+  }
+
+  public async unidadeItemExiste(id: string): Promise<boolean> {
+    const unidade = await prisma.unidadeItem.findUnique({
+      where: { id },
+      select: { id: true },
+    });
+    return unidade !== null;
+  }
+
+  public async atualizarEstadoUnidade(
+    id: string,
+    data: AtualizarEstadoUnidadeDTO,
+  ): Promise<void> {
+    await prisma.unidadeItem.update({
+      where: { id },
+      data: { estado: data.estado },
+    });
   }
 }

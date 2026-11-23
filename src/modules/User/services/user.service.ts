@@ -7,6 +7,7 @@ import {
 } from "../utils/validations/user.validations";
 import nodemailer from "nodemailer";
 import jwt from "jsonwebtoken";
+import { getJwtSecret } from "../../../utils/jwt";
 
 const repository = new UserRepository();
 
@@ -28,7 +29,7 @@ export class UserService {
 
     const token = jwt.sign(
       { id: user.id, role: user.role },
-      process.env.JWT_SECRET as string,
+      getJwtSecret(),
       { expiresIn: "24h" },
     );
 
@@ -39,7 +40,7 @@ export class UserService {
     const user = await repository.GetUserByEmail(email);
     if (!user) throw new Error("User not found");
 
-    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET as string, {
+    const token = jwt.sign({ id: user.id }, getJwtSecret(), {
       expiresIn: "15m",
     });
 

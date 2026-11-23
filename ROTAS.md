@@ -427,6 +427,34 @@ Exclui um patrimônio somente se não houver unidades cadastradas para ele.
 }
 ```
 
+## Unidades de patrimônio
+
+Todas as rotas desta seção exigem autenticação.
+
+### `PUT /unidades/:id/estado`
+
+Atualiza a situação de uma unidade de patrimônio existente.
+
+**Parâmetro:** `id` — identificador da unidade.
+
+**Entrada (JSON):**
+
+```json
+{
+  "estado": "MANUTENÇÃO"
+}
+```
+
+Valores aceitos: `ATIVO`, `EXTRAVIADO`, `MANUTENÇÃO` e `DANIFICADO`.
+
+**Saída — `200 OK`:**
+
+```json
+{
+  "message": "Situação da unidade atualizada com sucesso."
+}
+```
+
 ## Movimentações
 
 Todas as rotas desta seção exigem autenticação. Não há rotas para editar ou excluir movimentações.

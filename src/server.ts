@@ -5,10 +5,12 @@ import { ambienteHandler } from "./modules/Ambientes/handlers/ambiente.handler";
 import { blocoHandler } from "./modules/Blocos/handlers/bloco.handler";
 import { patrimonioHandler } from "./modules/Patrimonio/handlers/patrimonio.handler";
 import { movimentacaoHandler } from "./modules/Movimentacao/handlers/movimentacao.handler";
+import { getJwtSecret } from "./utils/jwt";
 
 const app = Express();
 const handler = new UserHandler();
 
+getJwtSecret();
 app.use(Express.json());
 
 // User
@@ -39,6 +41,7 @@ app.get('/patrimonios/:id', authMiddleware, (req, res) => patrimonioHandler.obte
 app.post('/patrimonios', authMiddleware, (req, res) => patrimonioHandler.criarPatrimonio(req, res));
 app.put('/patrimonios/:id', authMiddleware, (req, res) => patrimonioHandler.atualizarPatrimonio(req, res));
 app.delete('/patrimonios/:id', authMiddleware, (req, res) => patrimonioHandler.deletarPatrimonio(req, res));
+app.put('/unidades/:id/estado', authMiddleware, (req, res) => patrimonioHandler.atualizarEstadoUnidade(req, res));
 
 // Movimentações
 app.get('/movimentacoes', authMiddleware, (req, res) => movimentacaoHandler.listarMovimentacoes(req, res));
