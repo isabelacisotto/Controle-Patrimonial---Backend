@@ -400,9 +400,9 @@ export const ModelName = {
   User: 'User',
   Item: 'Item',
   UnidadeItem: 'UnidadeItem',
+  Bloco: 'Bloco',
   Ambiente: 'Ambiente',
-  Movimentacao: 'Movimentacao',
-  Bloco: 'Bloco'
+  Movimentacao: 'Movimentacao'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -418,7 +418,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "item" | "unidadeItem" | "ambiente" | "movimentacao" | "bloco"
+    modelProps: "user" | "item" | "unidadeItem" | "bloco" | "ambiente" | "movimentacao"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -644,6 +644,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Bloco: {
+      payload: Prisma.$BlocoPayload<ExtArgs>
+      fields: Prisma.BlocoFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.BlocoFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlocoPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.BlocoFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlocoPayload>
+        }
+        findFirst: {
+          args: Prisma.BlocoFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlocoPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.BlocoFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlocoPayload>
+        }
+        findMany: {
+          args: Prisma.BlocoFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlocoPayload>[]
+        }
+        create: {
+          args: Prisma.BlocoCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlocoPayload>
+        }
+        createMany: {
+          args: Prisma.BlocoCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.BlocoCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlocoPayload>[]
+        }
+        delete: {
+          args: Prisma.BlocoDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlocoPayload>
+        }
+        update: {
+          args: Prisma.BlocoUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlocoPayload>
+        }
+        deleteMany: {
+          args: Prisma.BlocoDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.BlocoUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.BlocoUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlocoPayload>[]
+        }
+        upsert: {
+          args: Prisma.BlocoUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlocoPayload>
+        }
+        aggregate: {
+          args: Prisma.BlocoAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateBloco>
+        }
+        groupBy: {
+          args: Prisma.BlocoGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BlocoGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.BlocoCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BlocoCountAggregateOutputType> | number
+        }
+      }
+    }
     Ambiente: {
       payload: Prisma.$AmbientePayload<ExtArgs>
       fields: Prisma.AmbienteFieldRefs
@@ -792,80 +866,6 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    Bloco: {
-      payload: Prisma.$BlocoPayload<ExtArgs>
-      fields: Prisma.BlocoFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.BlocoFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlocoPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.BlocoFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlocoPayload>
-        }
-        findFirst: {
-          args: Prisma.BlocoFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlocoPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.BlocoFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlocoPayload>
-        }
-        findMany: {
-          args: Prisma.BlocoFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlocoPayload>[]
-        }
-        create: {
-          args: Prisma.BlocoCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlocoPayload>
-        }
-        createMany: {
-          args: Prisma.BlocoCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.BlocoCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlocoPayload>[]
-        }
-        delete: {
-          args: Prisma.BlocoDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlocoPayload>
-        }
-        update: {
-          args: Prisma.BlocoUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlocoPayload>
-        }
-        deleteMany: {
-          args: Prisma.BlocoDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.BlocoUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.BlocoUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlocoPayload>[]
-        }
-        upsert: {
-          args: Prisma.BlocoUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlocoPayload>
-        }
-        aggregate: {
-          args: Prisma.BlocoAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateBloco>
-        }
-        groupBy: {
-          args: Prisma.BlocoGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.BlocoGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.BlocoCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.BlocoCountAggregateOutputType> | number
-        }
-      }
-    }
   }
 } & {
   other: {
@@ -940,6 +940,14 @@ export const UnidadeItemScalarFieldEnum = {
 export type UnidadeItemScalarFieldEnum = (typeof UnidadeItemScalarFieldEnum)[keyof typeof UnidadeItemScalarFieldEnum]
 
 
+export const BlocoScalarFieldEnum = {
+  id: 'id',
+  numero: 'numero'
+} as const
+
+export type BlocoScalarFieldEnum = (typeof BlocoScalarFieldEnum)[keyof typeof BlocoScalarFieldEnum]
+
+
 export const AmbienteScalarFieldEnum = {
   id: 'id',
   nome: 'nome',
@@ -952,22 +960,19 @@ export type AmbienteScalarFieldEnum = (typeof AmbienteScalarFieldEnum)[keyof typ
 
 export const MovimentacaoScalarFieldEnum = {
   id: 'id',
-  unidadeItemId: 'unidadeItemId',
+  itemId: 'itemId',
+  quantidade: 'quantidade',
   origem: 'origem',
   destino: 'destino',
   resp: 'resp',
-  dataMovimentacao: 'dataMovimentacao'
+  dataMovimentacao: 'dataMovimentacao',
+  expiresAt: 'expiresAt',
+  origemAmbienteId: 'origemAmbienteId',
+  destinoAmbienteId: 'destinoAmbienteId',
+  expirationProcessedAt: 'expirationProcessedAt'
 } as const
 
 export type MovimentacaoScalarFieldEnum = (typeof MovimentacaoScalarFieldEnum)[keyof typeof MovimentacaoScalarFieldEnum]
-
-
-export const BlocoScalarFieldEnum = {
-  id: 'id',
-  numero: 'numero'
-} as const
-
-export type BlocoScalarFieldEnum = (typeof BlocoScalarFieldEnum)[keyof typeof BlocoScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1201,9 +1206,9 @@ export type GlobalOmitConfig = {
   user?: Prisma.UserOmit
   item?: Prisma.ItemOmit
   unidadeItem?: Prisma.UnidadeItemOmit
+  bloco?: Prisma.BlocoOmit
   ambiente?: Prisma.AmbienteOmit
   movimentacao?: Prisma.MovimentacaoOmit
-  bloco?: Prisma.BlocoOmit
 }
 
 /* Types for Logging */

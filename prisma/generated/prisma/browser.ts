@@ -33,6 +33,11 @@ export type Item = Prisma.ItemModel
  */
 export type UnidadeItem = Prisma.UnidadeItemModel
 /**
+ * Model Bloco
+ * 
+ */
+export type Bloco = Prisma.BlocoModel
+/**
  * Model Ambiente
  * 
  */
@@ -42,8 +47,3 @@ export type Ambiente = Prisma.AmbienteModel
  * 
  */
 export type Movimentacao = Prisma.MovimentacaoModel
-/**
- * Model Bloco
- * 
- */
-export type Bloco = Prisma.BlocoModel

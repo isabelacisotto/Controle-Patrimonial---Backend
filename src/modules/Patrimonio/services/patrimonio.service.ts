@@ -2,15 +2,27 @@ import type {
   AtualizarEstadoUnidadeDTO,
   AtualizarPatrimonioDTO,
   CriarPatrimonioDTO,
-  Patrimonio,
   PatrimonioComUnidades
 } from "../dtos/patrimonio.dto";
 import { EstadoItem } from "../../../../prisma/generated/prisma/enums";
-import { PatrimonioRepository } from "../repositories/patrimonio.repository";
+import {
+  PatrimonioRepository,
+  type ResultadoExclusaoPatrimonio
+} from "../repositories/patrimonio.repository";
 import {
   validarAtualizacaoPatrimonio,
   validarCriacaoPatrimonio
 } from "../utils/validations/patrimonio.validations";
+
+export class ErroExclusaoPatrimonio extends Error {
+  constructor(
+    public readonly status: 404 | 409,
+    message: string,
+  ) {
+    super(message);
+    this.name = "ErroExclusaoPatrimonio";
+  }
+}
 
 export class PatrimonioService {
   constructor(private readonly patrimonioRepository: PatrimonioRepository) {}
@@ -27,8 +39,11 @@ export class PatrimonioService {
     return patrimonio;
   }
 
-  public async criarPatrimonio(data: CriarPatrimonioDTO): Promise<Patrimonio> {
+  public async criarPatrimonio(data: CriarPatrimonioDTO): Promise<PatrimonioComUnidades> {
     validarCriacaoPatrimonio(data);
+    if (data.ambienteId && !(await this.patrimonioRepository.ambienteExiste(data.ambienteId))) {
+      throw new Error("Ambiente não encontrado.");
+    }
     return this.patrimonioRepository.criarPatrimonio(data);
   }
 
@@ -39,11 +54,17 @@ export class PatrimonioService {
   }
 
   public async deletarPatrimonio(id: string): Promise<void> {
-    const patrimonio = await this.obterPatrimonioPorId(id);
-    if (patrimonio.unidades.length > 0) {
-      throw new Error("Não é possível excluir um patrimônio que possui unidades cadastradas.");
+    const resultado: ResultadoExclusaoPatrimonio =
+      await this.patrimonioRepository.excluirPatrimonio(id);
+    if (resultado === "nao_encontrado") {
+      throw new ErroExclusaoPatrimonio(404, "Patrimônio não encontrado.");
     }
-    await this.patrimonioRepository.excluirPatrimonio(id);
+    if (resultado === "possui_movimentacoes") {
+      throw new ErroExclusaoPatrimonio(
+        409,
+        "Não é possível excluir um patrimônio com movimentações registradas.",
+      );
+    }
   }
 
   public async atualizarEstadoUnidade(

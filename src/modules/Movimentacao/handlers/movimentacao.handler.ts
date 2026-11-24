@@ -1,5 +1,6 @@
 import type { Request, Response } from "express";
 import type { CriarMovimentacaoDTO } from "../dtos/movimentacao.dto";
+import { ErroMovimentacao } from "../errors/movimentacao.error";
 import { MovimentacaoRepository } from "../repositories/movimentacao.repository";
 import { MovimentacaoService } from "../services/movimentacao.service";
 
@@ -20,8 +21,16 @@ export class MovimentacaoHandler {
     req: Request<{}, {}, CriarMovimentacaoDTO>,
     res: Response
   ): Promise<void> {
-    const movimentacao = await this.movimentacaoService.criarMovimentacao(req.body);
-    res.status(201).json(movimentacao);
+    try {
+      const movimentacao = await this.movimentacaoService.criarMovimentacao(req.body);
+      res.status(201).json(movimentacao);
+    } catch (error) {
+      if (error instanceof ErroMovimentacao) {
+        res.status(error.status).json({ message: error.message });
+        return;
+      }
+      throw error;
+    }
   }
 }
 

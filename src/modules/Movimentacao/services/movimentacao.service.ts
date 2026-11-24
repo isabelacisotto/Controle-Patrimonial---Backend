@@ -19,9 +19,6 @@ export class MovimentacaoService {
 
   public async criarMovimentacao(data: CriarMovimentacaoDTO): Promise<Movimentacao> {
     validarCriacaoMovimentacao(data);
-    if (!await this.movimentacaoRepository.unidadeItemExiste(data.unidadeItemId)) {
-      throw new Error("Unidade de patrimônio não encontrada.");
-    }
     return this.movimentacaoRepository.criarMovimentacao(data);
   }
 }

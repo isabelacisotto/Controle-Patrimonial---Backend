@@ -5,7 +5,10 @@ import type {
   CriarPatrimonioDTO
 } from "../dtos/patrimonio.dto";
 import { PatrimonioRepository } from "../repositories/patrimonio.repository";
-import { PatrimonioService } from "../services/patrimonio.service";
+import {
+  ErroExclusaoPatrimonio,
+  PatrimonioService
+} from "../services/patrimonio.service";
 
 export class PatrimonioHandler {
   constructor(private readonly patrimonioService: PatrimonioService) {}
@@ -37,8 +40,16 @@ export class PatrimonioHandler {
   }
 
   public async deletarPatrimonio(req: Request<{ id: string }>, res: Response): Promise<void> {
-    await this.patrimonioService.deletarPatrimonio(req.params.id);
-    res.status(200).json({ message: "Patrimônio deletado com sucesso." });
+    try {
+      await this.patrimonioService.deletarPatrimonio(req.params.id);
+      res.status(200).json({ message: "Patrimônio deletado com sucesso." });
+    } catch (error) {
+      if (error instanceof ErroExclusaoPatrimonio) {
+        res.status(error.status).json({ message: error.message });
+        return;
+      }
+      throw error;
+    }
   }
 
   public async atualizarEstadoUnidade(

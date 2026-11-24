@@ -51,8 +51,13 @@ function validarDadosPatrimonio(
     throw new Error("A marca do patrimônio é obrigatória.");
   }
   if ("quantidade" in data && data.quantidade !== undefined &&
-    (!Number.isInteger(data.quantidade) || data.quantidade < 0)) {
+    (!Number.isSafeInteger(data.quantidade) || data.quantidade < 0)) {
     throw new Error("A quantidade deve ser um número inteiro não negativo.");
+  }
+  if ("ambienteId" in data && data.ambienteId !== undefined &&
+    data.ambienteId !== null &&
+    (typeof data.ambienteId !== "string" || !data.ambienteId.trim())) {
+    throw new Error("O ambiente informado é inválido.");
   }
 
   if (("tombamento" in data && data.tombamento === undefined) ||

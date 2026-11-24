@@ -20,64 +20,112 @@ export type MovimentacaoModel = runtime.Types.Result.DefaultSelection<Prisma.$Mo
 
 export type AggregateMovimentacao = {
   _count: MovimentacaoCountAggregateOutputType | null
+  _avg: MovimentacaoAvgAggregateOutputType | null
+  _sum: MovimentacaoSumAggregateOutputType | null
   _min: MovimentacaoMinAggregateOutputType | null
   _max: MovimentacaoMaxAggregateOutputType | null
 }
 
+export type MovimentacaoAvgAggregateOutputType = {
+  quantidade: number | null
+}
+
+export type MovimentacaoSumAggregateOutputType = {
+  quantidade: number | null
+}
+
 export type MovimentacaoMinAggregateOutputType = {
   id: string | null
-  unidadeItemId: string | null
+  itemId: string | null
+  quantidade: number | null
   origem: string | null
   destino: string | null
   resp: string | null
   dataMovimentacao: Date | null
+  expiresAt: Date | null
+  origemAmbienteId: string | null
+  destinoAmbienteId: string | null
+  expirationProcessedAt: Date | null
 }
 
 export type MovimentacaoMaxAggregateOutputType = {
   id: string | null
-  unidadeItemId: string | null
+  itemId: string | null
+  quantidade: number | null
   origem: string | null
   destino: string | null
   resp: string | null
   dataMovimentacao: Date | null
+  expiresAt: Date | null
+  origemAmbienteId: string | null
+  destinoAmbienteId: string | null
+  expirationProcessedAt: Date | null
 }
 
 export type MovimentacaoCountAggregateOutputType = {
   id: number
-  unidadeItemId: number
+  itemId: number
+  quantidade: number
   origem: number
   destino: number
   resp: number
   dataMovimentacao: number
+  expiresAt: number
+  origemAmbienteId: number
+  destinoAmbienteId: number
+  expirationProcessedAt: number
   _all: number
 }
 
 
+export type MovimentacaoAvgAggregateInputType = {
+  quantidade?: true
+}
+
+export type MovimentacaoSumAggregateInputType = {
+  quantidade?: true
+}
+
 export type MovimentacaoMinAggregateInputType = {
   id?: true
-  unidadeItemId?: true
+  itemId?: true
+  quantidade?: true
   origem?: true
   destino?: true
   resp?: true
   dataMovimentacao?: true
+  expiresAt?: true
+  origemAmbienteId?: true
+  destinoAmbienteId?: true
+  expirationProcessedAt?: true
 }
 
 export type MovimentacaoMaxAggregateInputType = {
   id?: true
-  unidadeItemId?: true
+  itemId?: true
+  quantidade?: true
   origem?: true
   destino?: true
   resp?: true
   dataMovimentacao?: true
+  expiresAt?: true
+  origemAmbienteId?: true
+  destinoAmbienteId?: true
+  expirationProcessedAt?: true
 }
 
 export type MovimentacaoCountAggregateInputType = {
   id?: true
-  unidadeItemId?: true
+  itemId?: true
+  quantidade?: true
   origem?: true
   destino?: true
   resp?: true
   dataMovimentacao?: true
+  expiresAt?: true
+  origemAmbienteId?: true
+  destinoAmbienteId?: true
+  expirationProcessedAt?: true
   _all?: true
 }
 
@@ -119,6 +167,18 @@ export type MovimentacaoAggregateArgs<ExtArgs extends runtime.Types.Extensions.I
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: MovimentacaoAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: MovimentacaoSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: MovimentacaoMinAggregateInputType
@@ -149,18 +209,27 @@ export type MovimentacaoGroupByArgs<ExtArgs extends runtime.Types.Extensions.Int
   take?: number
   skip?: number
   _count?: MovimentacaoCountAggregateInputType | true
+  _avg?: MovimentacaoAvgAggregateInputType
+  _sum?: MovimentacaoSumAggregateInputType
   _min?: MovimentacaoMinAggregateInputType
   _max?: MovimentacaoMaxAggregateInputType
 }
 
 export type MovimentacaoGroupByOutputType = {
   id: string
-  unidadeItemId: string
+  itemId: string
+  quantidade: number
   origem: string
   destino: string
   resp: string
   dataMovimentacao: Date
+  expiresAt: Date | null
+  origemAmbienteId: string | null
+  destinoAmbienteId: string | null
+  expirationProcessedAt: Date | null
   _count: MovimentacaoCountAggregateOutputType | null
+  _avg: MovimentacaoAvgAggregateOutputType | null
+  _sum: MovimentacaoSumAggregateOutputType | null
   _min: MovimentacaoMinAggregateOutputType | null
   _max: MovimentacaoMaxAggregateOutputType | null
 }
@@ -185,22 +254,32 @@ export type MovimentacaoWhereInput = {
   OR?: Prisma.MovimentacaoWhereInput[]
   NOT?: Prisma.MovimentacaoWhereInput | Prisma.MovimentacaoWhereInput[]
   id?: Prisma.StringFilter<"Movimentacao"> | string
-  unidadeItemId?: Prisma.StringFilter<"Movimentacao"> | string
+  itemId?: Prisma.StringFilter<"Movimentacao"> | string
+  quantidade?: Prisma.IntFilter<"Movimentacao"> | number
   origem?: Prisma.StringFilter<"Movimentacao"> | string
   destino?: Prisma.StringFilter<"Movimentacao"> | string
   resp?: Prisma.StringFilter<"Movimentacao"> | string
   dataMovimentacao?: Prisma.DateTimeFilter<"Movimentacao"> | Date | string
-  unidadeItem?: Prisma.XOR<Prisma.UnidadeItemScalarRelationFilter, Prisma.UnidadeItemWhereInput>
+  expiresAt?: Prisma.DateTimeNullableFilter<"Movimentacao"> | Date | string | null
+  origemAmbienteId?: Prisma.StringNullableFilter<"Movimentacao"> | string | null
+  destinoAmbienteId?: Prisma.StringNullableFilter<"Movimentacao"> | string | null
+  expirationProcessedAt?: Prisma.DateTimeNullableFilter<"Movimentacao"> | Date | string | null
+  item?: Prisma.XOR<Prisma.ItemScalarRelationFilter, Prisma.ItemWhereInput>
 }
 
 export type MovimentacaoOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  unidadeItemId?: Prisma.SortOrder
+  itemId?: Prisma.SortOrder
+  quantidade?: Prisma.SortOrder
   origem?: Prisma.SortOrder
   destino?: Prisma.SortOrder
   resp?: Prisma.SortOrder
   dataMovimentacao?: Prisma.SortOrder
-  unidadeItem?: Prisma.UnidadeItemOrderByWithRelationInput
+  expiresAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  origemAmbienteId?: Prisma.SortOrderInput | Prisma.SortOrder
+  destinoAmbienteId?: Prisma.SortOrderInput | Prisma.SortOrder
+  expirationProcessedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  item?: Prisma.ItemOrderByWithRelationInput
 }
 
 export type MovimentacaoWhereUniqueInput = Prisma.AtLeast<{
@@ -208,24 +287,36 @@ export type MovimentacaoWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.MovimentacaoWhereInput | Prisma.MovimentacaoWhereInput[]
   OR?: Prisma.MovimentacaoWhereInput[]
   NOT?: Prisma.MovimentacaoWhereInput | Prisma.MovimentacaoWhereInput[]
-  unidadeItemId?: Prisma.StringFilter<"Movimentacao"> | string
+  itemId?: Prisma.StringFilter<"Movimentacao"> | string
+  quantidade?: Prisma.IntFilter<"Movimentacao"> | number
   origem?: Prisma.StringFilter<"Movimentacao"> | string
   destino?: Prisma.StringFilter<"Movimentacao"> | string
   resp?: Prisma.StringFilter<"Movimentacao"> | string
   dataMovimentacao?: Prisma.DateTimeFilter<"Movimentacao"> | Date | string
-  unidadeItem?: Prisma.XOR<Prisma.UnidadeItemScalarRelationFilter, Prisma.UnidadeItemWhereInput>
+  expiresAt?: Prisma.DateTimeNullableFilter<"Movimentacao"> | Date | string | null
+  origemAmbienteId?: Prisma.StringNullableFilter<"Movimentacao"> | string | null
+  destinoAmbienteId?: Prisma.StringNullableFilter<"Movimentacao"> | string | null
+  expirationProcessedAt?: Prisma.DateTimeNullableFilter<"Movimentacao"> | Date | string | null
+  item?: Prisma.XOR<Prisma.ItemScalarRelationFilter, Prisma.ItemWhereInput>
 }, "id">
 
 export type MovimentacaoOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  unidadeItemId?: Prisma.SortOrder
+  itemId?: Prisma.SortOrder
+  quantidade?: Prisma.SortOrder
   origem?: Prisma.SortOrder
   destino?: Prisma.SortOrder
   resp?: Prisma.SortOrder
   dataMovimentacao?: Prisma.SortOrder
+  expiresAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  origemAmbienteId?: Prisma.SortOrderInput | Prisma.SortOrder
+  destinoAmbienteId?: Prisma.SortOrderInput | Prisma.SortOrder
+  expirationProcessedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.MovimentacaoCountOrderByAggregateInput
+  _avg?: Prisma.MovimentacaoAvgOrderByAggregateInput
   _max?: Prisma.MovimentacaoMaxOrderByAggregateInput
   _min?: Prisma.MovimentacaoMinOrderByAggregateInput
+  _sum?: Prisma.MovimentacaoSumOrderByAggregateInput
 }
 
 export type MovimentacaoScalarWhereWithAggregatesInput = {
@@ -233,73 +324,113 @@ export type MovimentacaoScalarWhereWithAggregatesInput = {
   OR?: Prisma.MovimentacaoScalarWhereWithAggregatesInput[]
   NOT?: Prisma.MovimentacaoScalarWhereWithAggregatesInput | Prisma.MovimentacaoScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Movimentacao"> | string
-  unidadeItemId?: Prisma.StringWithAggregatesFilter<"Movimentacao"> | string
+  itemId?: Prisma.StringWithAggregatesFilter<"Movimentacao"> | string
+  quantidade?: Prisma.IntWithAggregatesFilter<"Movimentacao"> | number
   origem?: Prisma.StringWithAggregatesFilter<"Movimentacao"> | string
   destino?: Prisma.StringWithAggregatesFilter<"Movimentacao"> | string
   resp?: Prisma.StringWithAggregatesFilter<"Movimentacao"> | string
   dataMovimentacao?: Prisma.DateTimeWithAggregatesFilter<"Movimentacao"> | Date | string
+  expiresAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Movimentacao"> | Date | string | null
+  origemAmbienteId?: Prisma.StringNullableWithAggregatesFilter<"Movimentacao"> | string | null
+  destinoAmbienteId?: Prisma.StringNullableWithAggregatesFilter<"Movimentacao"> | string | null
+  expirationProcessedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Movimentacao"> | Date | string | null
 }
 
 export type MovimentacaoCreateInput = {
   id?: string
+  quantidade?: number
   origem: string
   destino: string
   resp: string
   dataMovimentacao?: Date | string
-  unidadeItem: Prisma.UnidadeItemCreateNestedOneWithoutMovimentacoesInput
+  expiresAt?: Date | string | null
+  origemAmbienteId?: string | null
+  destinoAmbienteId?: string | null
+  expirationProcessedAt?: Date | string | null
+  item: Prisma.ItemCreateNestedOneWithoutMovimentacoesInput
 }
 
 export type MovimentacaoUncheckedCreateInput = {
   id?: string
-  unidadeItemId: string
+  itemId: string
+  quantidade?: number
   origem: string
   destino: string
   resp: string
   dataMovimentacao?: Date | string
+  expiresAt?: Date | string | null
+  origemAmbienteId?: string | null
+  destinoAmbienteId?: string | null
+  expirationProcessedAt?: Date | string | null
 }
 
 export type MovimentacaoUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  quantidade?: Prisma.IntFieldUpdateOperationsInput | number
   origem?: Prisma.StringFieldUpdateOperationsInput | string
   destino?: Prisma.StringFieldUpdateOperationsInput | string
   resp?: Prisma.StringFieldUpdateOperationsInput | string
   dataMovimentacao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  unidadeItem?: Prisma.UnidadeItemUpdateOneRequiredWithoutMovimentacoesNestedInput
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  origemAmbienteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  destinoAmbienteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expirationProcessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  item?: Prisma.ItemUpdateOneRequiredWithoutMovimentacoesNestedInput
 }
 
 export type MovimentacaoUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  unidadeItemId?: Prisma.StringFieldUpdateOperationsInput | string
+  itemId?: Prisma.StringFieldUpdateOperationsInput | string
+  quantidade?: Prisma.IntFieldUpdateOperationsInput | number
   origem?: Prisma.StringFieldUpdateOperationsInput | string
   destino?: Prisma.StringFieldUpdateOperationsInput | string
   resp?: Prisma.StringFieldUpdateOperationsInput | string
   dataMovimentacao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  origemAmbienteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  destinoAmbienteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expirationProcessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type MovimentacaoCreateManyInput = {
   id?: string
-  unidadeItemId: string
+  itemId: string
+  quantidade?: number
   origem: string
   destino: string
   resp: string
   dataMovimentacao?: Date | string
+  expiresAt?: Date | string | null
+  origemAmbienteId?: string | null
+  destinoAmbienteId?: string | null
+  expirationProcessedAt?: Date | string | null
 }
 
 export type MovimentacaoUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  quantidade?: Prisma.IntFieldUpdateOperationsInput | number
   origem?: Prisma.StringFieldUpdateOperationsInput | string
   destino?: Prisma.StringFieldUpdateOperationsInput | string
   resp?: Prisma.StringFieldUpdateOperationsInput | string
   dataMovimentacao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  origemAmbienteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  destinoAmbienteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expirationProcessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type MovimentacaoUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  unidadeItemId?: Prisma.StringFieldUpdateOperationsInput | string
+  itemId?: Prisma.StringFieldUpdateOperationsInput | string
+  quantidade?: Prisma.IntFieldUpdateOperationsInput | number
   origem?: Prisma.StringFieldUpdateOperationsInput | string
   destino?: Prisma.StringFieldUpdateOperationsInput | string
   resp?: Prisma.StringFieldUpdateOperationsInput | string
   dataMovimentacao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  origemAmbienteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  destinoAmbienteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expirationProcessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type MovimentacaoListRelationFilter = {
@@ -314,112 +445,149 @@ export type MovimentacaoOrderByRelationAggregateInput = {
 
 export type MovimentacaoCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  unidadeItemId?: Prisma.SortOrder
+  itemId?: Prisma.SortOrder
+  quantidade?: Prisma.SortOrder
   origem?: Prisma.SortOrder
   destino?: Prisma.SortOrder
   resp?: Prisma.SortOrder
   dataMovimentacao?: Prisma.SortOrder
+  expiresAt?: Prisma.SortOrder
+  origemAmbienteId?: Prisma.SortOrder
+  destinoAmbienteId?: Prisma.SortOrder
+  expirationProcessedAt?: Prisma.SortOrder
+}
+
+export type MovimentacaoAvgOrderByAggregateInput = {
+  quantidade?: Prisma.SortOrder
 }
 
 export type MovimentacaoMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  unidadeItemId?: Prisma.SortOrder
+  itemId?: Prisma.SortOrder
+  quantidade?: Prisma.SortOrder
   origem?: Prisma.SortOrder
   destino?: Prisma.SortOrder
   resp?: Prisma.SortOrder
   dataMovimentacao?: Prisma.SortOrder
+  expiresAt?: Prisma.SortOrder
+  origemAmbienteId?: Prisma.SortOrder
+  destinoAmbienteId?: Prisma.SortOrder
+  expirationProcessedAt?: Prisma.SortOrder
 }
 
 export type MovimentacaoMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  unidadeItemId?: Prisma.SortOrder
+  itemId?: Prisma.SortOrder
+  quantidade?: Prisma.SortOrder
   origem?: Prisma.SortOrder
   destino?: Prisma.SortOrder
   resp?: Prisma.SortOrder
   dataMovimentacao?: Prisma.SortOrder
+  expiresAt?: Prisma.SortOrder
+  origemAmbienteId?: Prisma.SortOrder
+  destinoAmbienteId?: Prisma.SortOrder
+  expirationProcessedAt?: Prisma.SortOrder
 }
 
-export type MovimentacaoCreateNestedManyWithoutUnidadeItemInput = {
-  create?: Prisma.XOR<Prisma.MovimentacaoCreateWithoutUnidadeItemInput, Prisma.MovimentacaoUncheckedCreateWithoutUnidadeItemInput> | Prisma.MovimentacaoCreateWithoutUnidadeItemInput[] | Prisma.MovimentacaoUncheckedCreateWithoutUnidadeItemInput[]
-  connectOrCreate?: Prisma.MovimentacaoCreateOrConnectWithoutUnidadeItemInput | Prisma.MovimentacaoCreateOrConnectWithoutUnidadeItemInput[]
-  createMany?: Prisma.MovimentacaoCreateManyUnidadeItemInputEnvelope
+export type MovimentacaoSumOrderByAggregateInput = {
+  quantidade?: Prisma.SortOrder
+}
+
+export type MovimentacaoCreateNestedManyWithoutItemInput = {
+  create?: Prisma.XOR<Prisma.MovimentacaoCreateWithoutItemInput, Prisma.MovimentacaoUncheckedCreateWithoutItemInput> | Prisma.MovimentacaoCreateWithoutItemInput[] | Prisma.MovimentacaoUncheckedCreateWithoutItemInput[]
+  connectOrCreate?: Prisma.MovimentacaoCreateOrConnectWithoutItemInput | Prisma.MovimentacaoCreateOrConnectWithoutItemInput[]
+  createMany?: Prisma.MovimentacaoCreateManyItemInputEnvelope
   connect?: Prisma.MovimentacaoWhereUniqueInput | Prisma.MovimentacaoWhereUniqueInput[]
 }
 
-export type MovimentacaoUncheckedCreateNestedManyWithoutUnidadeItemInput = {
-  create?: Prisma.XOR<Prisma.MovimentacaoCreateWithoutUnidadeItemInput, Prisma.MovimentacaoUncheckedCreateWithoutUnidadeItemInput> | Prisma.MovimentacaoCreateWithoutUnidadeItemInput[] | Prisma.MovimentacaoUncheckedCreateWithoutUnidadeItemInput[]
-  connectOrCreate?: Prisma.MovimentacaoCreateOrConnectWithoutUnidadeItemInput | Prisma.MovimentacaoCreateOrConnectWithoutUnidadeItemInput[]
-  createMany?: Prisma.MovimentacaoCreateManyUnidadeItemInputEnvelope
+export type MovimentacaoUncheckedCreateNestedManyWithoutItemInput = {
+  create?: Prisma.XOR<Prisma.MovimentacaoCreateWithoutItemInput, Prisma.MovimentacaoUncheckedCreateWithoutItemInput> | Prisma.MovimentacaoCreateWithoutItemInput[] | Prisma.MovimentacaoUncheckedCreateWithoutItemInput[]
+  connectOrCreate?: Prisma.MovimentacaoCreateOrConnectWithoutItemInput | Prisma.MovimentacaoCreateOrConnectWithoutItemInput[]
+  createMany?: Prisma.MovimentacaoCreateManyItemInputEnvelope
   connect?: Prisma.MovimentacaoWhereUniqueInput | Prisma.MovimentacaoWhereUniqueInput[]
 }
 
-export type MovimentacaoUpdateManyWithoutUnidadeItemNestedInput = {
-  create?: Prisma.XOR<Prisma.MovimentacaoCreateWithoutUnidadeItemInput, Prisma.MovimentacaoUncheckedCreateWithoutUnidadeItemInput> | Prisma.MovimentacaoCreateWithoutUnidadeItemInput[] | Prisma.MovimentacaoUncheckedCreateWithoutUnidadeItemInput[]
-  connectOrCreate?: Prisma.MovimentacaoCreateOrConnectWithoutUnidadeItemInput | Prisma.MovimentacaoCreateOrConnectWithoutUnidadeItemInput[]
-  upsert?: Prisma.MovimentacaoUpsertWithWhereUniqueWithoutUnidadeItemInput | Prisma.MovimentacaoUpsertWithWhereUniqueWithoutUnidadeItemInput[]
-  createMany?: Prisma.MovimentacaoCreateManyUnidadeItemInputEnvelope
+export type MovimentacaoUpdateManyWithoutItemNestedInput = {
+  create?: Prisma.XOR<Prisma.MovimentacaoCreateWithoutItemInput, Prisma.MovimentacaoUncheckedCreateWithoutItemInput> | Prisma.MovimentacaoCreateWithoutItemInput[] | Prisma.MovimentacaoUncheckedCreateWithoutItemInput[]
+  connectOrCreate?: Prisma.MovimentacaoCreateOrConnectWithoutItemInput | Prisma.MovimentacaoCreateOrConnectWithoutItemInput[]
+  upsert?: Prisma.MovimentacaoUpsertWithWhereUniqueWithoutItemInput | Prisma.MovimentacaoUpsertWithWhereUniqueWithoutItemInput[]
+  createMany?: Prisma.MovimentacaoCreateManyItemInputEnvelope
   set?: Prisma.MovimentacaoWhereUniqueInput | Prisma.MovimentacaoWhereUniqueInput[]
   disconnect?: Prisma.MovimentacaoWhereUniqueInput | Prisma.MovimentacaoWhereUniqueInput[]
   delete?: Prisma.MovimentacaoWhereUniqueInput | Prisma.MovimentacaoWhereUniqueInput[]
   connect?: Prisma.MovimentacaoWhereUniqueInput | Prisma.MovimentacaoWhereUniqueInput[]
-  update?: Prisma.MovimentacaoUpdateWithWhereUniqueWithoutUnidadeItemInput | Prisma.MovimentacaoUpdateWithWhereUniqueWithoutUnidadeItemInput[]
-  updateMany?: Prisma.MovimentacaoUpdateManyWithWhereWithoutUnidadeItemInput | Prisma.MovimentacaoUpdateManyWithWhereWithoutUnidadeItemInput[]
+  update?: Prisma.MovimentacaoUpdateWithWhereUniqueWithoutItemInput | Prisma.MovimentacaoUpdateWithWhereUniqueWithoutItemInput[]
+  updateMany?: Prisma.MovimentacaoUpdateManyWithWhereWithoutItemInput | Prisma.MovimentacaoUpdateManyWithWhereWithoutItemInput[]
   deleteMany?: Prisma.MovimentacaoScalarWhereInput | Prisma.MovimentacaoScalarWhereInput[]
 }
 
-export type MovimentacaoUncheckedUpdateManyWithoutUnidadeItemNestedInput = {
-  create?: Prisma.XOR<Prisma.MovimentacaoCreateWithoutUnidadeItemInput, Prisma.MovimentacaoUncheckedCreateWithoutUnidadeItemInput> | Prisma.MovimentacaoCreateWithoutUnidadeItemInput[] | Prisma.MovimentacaoUncheckedCreateWithoutUnidadeItemInput[]
-  connectOrCreate?: Prisma.MovimentacaoCreateOrConnectWithoutUnidadeItemInput | Prisma.MovimentacaoCreateOrConnectWithoutUnidadeItemInput[]
-  upsert?: Prisma.MovimentacaoUpsertWithWhereUniqueWithoutUnidadeItemInput | Prisma.MovimentacaoUpsertWithWhereUniqueWithoutUnidadeItemInput[]
-  createMany?: Prisma.MovimentacaoCreateManyUnidadeItemInputEnvelope
+export type MovimentacaoUncheckedUpdateManyWithoutItemNestedInput = {
+  create?: Prisma.XOR<Prisma.MovimentacaoCreateWithoutItemInput, Prisma.MovimentacaoUncheckedCreateWithoutItemInput> | Prisma.MovimentacaoCreateWithoutItemInput[] | Prisma.MovimentacaoUncheckedCreateWithoutItemInput[]
+  connectOrCreate?: Prisma.MovimentacaoCreateOrConnectWithoutItemInput | Prisma.MovimentacaoCreateOrConnectWithoutItemInput[]
+  upsert?: Prisma.MovimentacaoUpsertWithWhereUniqueWithoutItemInput | Prisma.MovimentacaoUpsertWithWhereUniqueWithoutItemInput[]
+  createMany?: Prisma.MovimentacaoCreateManyItemInputEnvelope
   set?: Prisma.MovimentacaoWhereUniqueInput | Prisma.MovimentacaoWhereUniqueInput[]
   disconnect?: Prisma.MovimentacaoWhereUniqueInput | Prisma.MovimentacaoWhereUniqueInput[]
   delete?: Prisma.MovimentacaoWhereUniqueInput | Prisma.MovimentacaoWhereUniqueInput[]
   connect?: Prisma.MovimentacaoWhereUniqueInput | Prisma.MovimentacaoWhereUniqueInput[]
-  update?: Prisma.MovimentacaoUpdateWithWhereUniqueWithoutUnidadeItemInput | Prisma.MovimentacaoUpdateWithWhereUniqueWithoutUnidadeItemInput[]
-  updateMany?: Prisma.MovimentacaoUpdateManyWithWhereWithoutUnidadeItemInput | Prisma.MovimentacaoUpdateManyWithWhereWithoutUnidadeItemInput[]
+  update?: Prisma.MovimentacaoUpdateWithWhereUniqueWithoutItemInput | Prisma.MovimentacaoUpdateWithWhereUniqueWithoutItemInput[]
+  updateMany?: Prisma.MovimentacaoUpdateManyWithWhereWithoutItemInput | Prisma.MovimentacaoUpdateManyWithWhereWithoutItemInput[]
   deleteMany?: Prisma.MovimentacaoScalarWhereInput | Prisma.MovimentacaoScalarWhereInput[]
 }
 
-export type MovimentacaoCreateWithoutUnidadeItemInput = {
+export type NullableDateTimeFieldUpdateOperationsInput = {
+  set?: Date | string | null
+}
+
+export type MovimentacaoCreateWithoutItemInput = {
   id?: string
+  quantidade?: number
   origem: string
   destino: string
   resp: string
   dataMovimentacao?: Date | string
+  expiresAt?: Date | string | null
+  origemAmbienteId?: string | null
+  destinoAmbienteId?: string | null
+  expirationProcessedAt?: Date | string | null
 }
 
-export type MovimentacaoUncheckedCreateWithoutUnidadeItemInput = {
+export type MovimentacaoUncheckedCreateWithoutItemInput = {
   id?: string
+  quantidade?: number
   origem: string
   destino: string
   resp: string
   dataMovimentacao?: Date | string
+  expiresAt?: Date | string | null
+  origemAmbienteId?: string | null
+  destinoAmbienteId?: string | null
+  expirationProcessedAt?: Date | string | null
 }
 
-export type MovimentacaoCreateOrConnectWithoutUnidadeItemInput = {
+export type MovimentacaoCreateOrConnectWithoutItemInput = {
   where: Prisma.MovimentacaoWhereUniqueInput
-  create: Prisma.XOR<Prisma.MovimentacaoCreateWithoutUnidadeItemInput, Prisma.MovimentacaoUncheckedCreateWithoutUnidadeItemInput>
+  create: Prisma.XOR<Prisma.MovimentacaoCreateWithoutItemInput, Prisma.MovimentacaoUncheckedCreateWithoutItemInput>
 }
 
-export type MovimentacaoCreateManyUnidadeItemInputEnvelope = {
-  data: Prisma.MovimentacaoCreateManyUnidadeItemInput | Prisma.MovimentacaoCreateManyUnidadeItemInput[]
+export type MovimentacaoCreateManyItemInputEnvelope = {
+  data: Prisma.MovimentacaoCreateManyItemInput | Prisma.MovimentacaoCreateManyItemInput[]
 }
 
-export type MovimentacaoUpsertWithWhereUniqueWithoutUnidadeItemInput = {
+export type MovimentacaoUpsertWithWhereUniqueWithoutItemInput = {
   where: Prisma.MovimentacaoWhereUniqueInput
-  update: Prisma.XOR<Prisma.MovimentacaoUpdateWithoutUnidadeItemInput, Prisma.MovimentacaoUncheckedUpdateWithoutUnidadeItemInput>
-  create: Prisma.XOR<Prisma.MovimentacaoCreateWithoutUnidadeItemInput, Prisma.MovimentacaoUncheckedCreateWithoutUnidadeItemInput>
+  update: Prisma.XOR<Prisma.MovimentacaoUpdateWithoutItemInput, Prisma.MovimentacaoUncheckedUpdateWithoutItemInput>
+  create: Prisma.XOR<Prisma.MovimentacaoCreateWithoutItemInput, Prisma.MovimentacaoUncheckedCreateWithoutItemInput>
 }
 
-export type MovimentacaoUpdateWithWhereUniqueWithoutUnidadeItemInput = {
+export type MovimentacaoUpdateWithWhereUniqueWithoutItemInput = {
   where: Prisma.MovimentacaoWhereUniqueInput
-  data: Prisma.XOR<Prisma.MovimentacaoUpdateWithoutUnidadeItemInput, Prisma.MovimentacaoUncheckedUpdateWithoutUnidadeItemInput>
+  data: Prisma.XOR<Prisma.MovimentacaoUpdateWithoutItemInput, Prisma.MovimentacaoUncheckedUpdateWithoutItemInput>
 }
 
-export type MovimentacaoUpdateManyWithWhereWithoutUnidadeItemInput = {
+export type MovimentacaoUpdateManyWithWhereWithoutItemInput = {
   where: Prisma.MovimentacaoScalarWhereInput
-  data: Prisma.XOR<Prisma.MovimentacaoUpdateManyMutationInput, Prisma.MovimentacaoUncheckedUpdateManyWithoutUnidadeItemInput>
+  data: Prisma.XOR<Prisma.MovimentacaoUpdateManyMutationInput, Prisma.MovimentacaoUncheckedUpdateManyWithoutItemInput>
 }
 
 export type MovimentacaoScalarWhereInput = {
@@ -427,109 +595,159 @@ export type MovimentacaoScalarWhereInput = {
   OR?: Prisma.MovimentacaoScalarWhereInput[]
   NOT?: Prisma.MovimentacaoScalarWhereInput | Prisma.MovimentacaoScalarWhereInput[]
   id?: Prisma.StringFilter<"Movimentacao"> | string
-  unidadeItemId?: Prisma.StringFilter<"Movimentacao"> | string
+  itemId?: Prisma.StringFilter<"Movimentacao"> | string
+  quantidade?: Prisma.IntFilter<"Movimentacao"> | number
   origem?: Prisma.StringFilter<"Movimentacao"> | string
   destino?: Prisma.StringFilter<"Movimentacao"> | string
   resp?: Prisma.StringFilter<"Movimentacao"> | string
   dataMovimentacao?: Prisma.DateTimeFilter<"Movimentacao"> | Date | string
+  expiresAt?: Prisma.DateTimeNullableFilter<"Movimentacao"> | Date | string | null
+  origemAmbienteId?: Prisma.StringNullableFilter<"Movimentacao"> | string | null
+  destinoAmbienteId?: Prisma.StringNullableFilter<"Movimentacao"> | string | null
+  expirationProcessedAt?: Prisma.DateTimeNullableFilter<"Movimentacao"> | Date | string | null
 }
 
-export type MovimentacaoCreateManyUnidadeItemInput = {
+export type MovimentacaoCreateManyItemInput = {
   id?: string
+  quantidade?: number
   origem: string
   destino: string
   resp: string
   dataMovimentacao?: Date | string
+  expiresAt?: Date | string | null
+  origemAmbienteId?: string | null
+  destinoAmbienteId?: string | null
+  expirationProcessedAt?: Date | string | null
 }
 
-export type MovimentacaoUpdateWithoutUnidadeItemInput = {
+export type MovimentacaoUpdateWithoutItemInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  quantidade?: Prisma.IntFieldUpdateOperationsInput | number
   origem?: Prisma.StringFieldUpdateOperationsInput | string
   destino?: Prisma.StringFieldUpdateOperationsInput | string
   resp?: Prisma.StringFieldUpdateOperationsInput | string
   dataMovimentacao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  origemAmbienteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  destinoAmbienteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expirationProcessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
-export type MovimentacaoUncheckedUpdateWithoutUnidadeItemInput = {
+export type MovimentacaoUncheckedUpdateWithoutItemInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  quantidade?: Prisma.IntFieldUpdateOperationsInput | number
   origem?: Prisma.StringFieldUpdateOperationsInput | string
   destino?: Prisma.StringFieldUpdateOperationsInput | string
   resp?: Prisma.StringFieldUpdateOperationsInput | string
   dataMovimentacao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  origemAmbienteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  destinoAmbienteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expirationProcessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
-export type MovimentacaoUncheckedUpdateManyWithoutUnidadeItemInput = {
+export type MovimentacaoUncheckedUpdateManyWithoutItemInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  quantidade?: Prisma.IntFieldUpdateOperationsInput | number
   origem?: Prisma.StringFieldUpdateOperationsInput | string
   destino?: Prisma.StringFieldUpdateOperationsInput | string
   resp?: Prisma.StringFieldUpdateOperationsInput | string
   dataMovimentacao?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  origemAmbienteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  destinoAmbienteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  expirationProcessedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
 
 export type MovimentacaoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  unidadeItemId?: boolean
+  itemId?: boolean
+  quantidade?: boolean
   origem?: boolean
   destino?: boolean
   resp?: boolean
   dataMovimentacao?: boolean
-  unidadeItem?: boolean | Prisma.UnidadeItemDefaultArgs<ExtArgs>
+  expiresAt?: boolean
+  origemAmbienteId?: boolean
+  destinoAmbienteId?: boolean
+  expirationProcessedAt?: boolean
+  item?: boolean | Prisma.ItemDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["movimentacao"]>
 
 export type MovimentacaoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  unidadeItemId?: boolean
+  itemId?: boolean
+  quantidade?: boolean
   origem?: boolean
   destino?: boolean
   resp?: boolean
   dataMovimentacao?: boolean
-  unidadeItem?: boolean | Prisma.UnidadeItemDefaultArgs<ExtArgs>
+  expiresAt?: boolean
+  origemAmbienteId?: boolean
+  destinoAmbienteId?: boolean
+  expirationProcessedAt?: boolean
+  item?: boolean | Prisma.ItemDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["movimentacao"]>
 
 export type MovimentacaoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  unidadeItemId?: boolean
+  itemId?: boolean
+  quantidade?: boolean
   origem?: boolean
   destino?: boolean
   resp?: boolean
   dataMovimentacao?: boolean
-  unidadeItem?: boolean | Prisma.UnidadeItemDefaultArgs<ExtArgs>
+  expiresAt?: boolean
+  origemAmbienteId?: boolean
+  destinoAmbienteId?: boolean
+  expirationProcessedAt?: boolean
+  item?: boolean | Prisma.ItemDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["movimentacao"]>
 
 export type MovimentacaoSelectScalar = {
   id?: boolean
-  unidadeItemId?: boolean
+  itemId?: boolean
+  quantidade?: boolean
   origem?: boolean
   destino?: boolean
   resp?: boolean
   dataMovimentacao?: boolean
+  expiresAt?: boolean
+  origemAmbienteId?: boolean
+  destinoAmbienteId?: boolean
+  expirationProcessedAt?: boolean
 }
 
-export type MovimentacaoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "unidadeItemId" | "origem" | "destino" | "resp" | "dataMovimentacao", ExtArgs["result"]["movimentacao"]>
+export type MovimentacaoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "itemId" | "quantidade" | "origem" | "destino" | "resp" | "dataMovimentacao" | "expiresAt" | "origemAmbienteId" | "destinoAmbienteId" | "expirationProcessedAt", ExtArgs["result"]["movimentacao"]>
 export type MovimentacaoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  unidadeItem?: boolean | Prisma.UnidadeItemDefaultArgs<ExtArgs>
+  item?: boolean | Prisma.ItemDefaultArgs<ExtArgs>
 }
 export type MovimentacaoIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  unidadeItem?: boolean | Prisma.UnidadeItemDefaultArgs<ExtArgs>
+  item?: boolean | Prisma.ItemDefaultArgs<ExtArgs>
 }
 export type MovimentacaoIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  unidadeItem?: boolean | Prisma.UnidadeItemDefaultArgs<ExtArgs>
+  item?: boolean | Prisma.ItemDefaultArgs<ExtArgs>
 }
 
 export type $MovimentacaoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Movimentacao"
   objects: {
-    unidadeItem: Prisma.$UnidadeItemPayload<ExtArgs>
+    item: Prisma.$ItemPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    unidadeItemId: string
+    itemId: string
+    quantidade: number
     origem: string
     destino: string
     resp: string
     dataMovimentacao: Date
+    expiresAt: Date | null
+    origemAmbienteId: string | null
+    destinoAmbienteId: string | null
+    expirationProcessedAt: Date | null
   }, ExtArgs["result"]["movimentacao"]>
   composites: {}
 }
@@ -924,7 +1142,7 @@ readonly fields: MovimentacaoFieldRefs;
  */
 export interface Prisma__MovimentacaoClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  unidadeItem<T extends Prisma.UnidadeItemDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UnidadeItemDefaultArgs<ExtArgs>>): Prisma.Prisma__UnidadeItemClient<runtime.Types.Result.GetResult<Prisma.$UnidadeItemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  item<T extends Prisma.ItemDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ItemDefaultArgs<ExtArgs>>): Prisma.Prisma__ItemClient<runtime.Types.Result.GetResult<Prisma.$ItemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -955,11 +1173,16 @@ export interface Prisma__MovimentacaoClient<T, Null = never, ExtArgs extends run
  */
 export interface MovimentacaoFieldRefs {
   readonly id: Prisma.FieldRef<"Movimentacao", 'String'>
-  readonly unidadeItemId: Prisma.FieldRef<"Movimentacao", 'String'>
+  readonly itemId: Prisma.FieldRef<"Movimentacao", 'String'>
+  readonly quantidade: Prisma.FieldRef<"Movimentacao", 'Int'>
   readonly origem: Prisma.FieldRef<"Movimentacao", 'String'>
   readonly destino: Prisma.FieldRef<"Movimentacao", 'String'>
   readonly resp: Prisma.FieldRef<"Movimentacao", 'String'>
   readonly dataMovimentacao: Prisma.FieldRef<"Movimentacao", 'DateTime'>
+  readonly expiresAt: Prisma.FieldRef<"Movimentacao", 'DateTime'>
+  readonly origemAmbienteId: Prisma.FieldRef<"Movimentacao", 'String'>
+  readonly destinoAmbienteId: Prisma.FieldRef<"Movimentacao", 'String'>
+  readonly expirationProcessedAt: Prisma.FieldRef<"Movimentacao", 'DateTime'>
 }
     
 

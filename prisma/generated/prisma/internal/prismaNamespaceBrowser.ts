@@ -54,9 +54,9 @@ export const ModelName = {
   User: 'User',
   Item: 'Item',
   UnidadeItem: 'UnidadeItem',
+  Bloco: 'Bloco',
   Ambiente: 'Ambiente',
-  Movimentacao: 'Movimentacao',
-  Bloco: 'Bloco'
+  Movimentacao: 'Movimentacao'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -110,6 +110,14 @@ export const UnidadeItemScalarFieldEnum = {
 export type UnidadeItemScalarFieldEnum = (typeof UnidadeItemScalarFieldEnum)[keyof typeof UnidadeItemScalarFieldEnum]
 
 
+export const BlocoScalarFieldEnum = {
+  id: 'id',
+  numero: 'numero'
+} as const
+
+export type BlocoScalarFieldEnum = (typeof BlocoScalarFieldEnum)[keyof typeof BlocoScalarFieldEnum]
+
+
 export const AmbienteScalarFieldEnum = {
   id: 'id',
   nome: 'nome',
@@ -122,22 +130,19 @@ export type AmbienteScalarFieldEnum = (typeof AmbienteScalarFieldEnum)[keyof typ
 
 export const MovimentacaoScalarFieldEnum = {
   id: 'id',
-  unidadeItemId: 'unidadeItemId',
+  itemId: 'itemId',
+  quantidade: 'quantidade',
   origem: 'origem',
   destino: 'destino',
   resp: 'resp',
-  dataMovimentacao: 'dataMovimentacao'
+  dataMovimentacao: 'dataMovimentacao',
+  expiresAt: 'expiresAt',
+  origemAmbienteId: 'origemAmbienteId',
+  destinoAmbienteId: 'destinoAmbienteId',
+  expirationProcessedAt: 'expirationProcessedAt'
 } as const
 
 export type MovimentacaoScalarFieldEnum = (typeof MovimentacaoScalarFieldEnum)[keyof typeof MovimentacaoScalarFieldEnum]
-
-
-export const BlocoScalarFieldEnum = {
-  id: 'id',
-  numero: 'numero'
-} as const
-
-export type BlocoScalarFieldEnum = (typeof BlocoScalarFieldEnum)[keyof typeof BlocoScalarFieldEnum]
 
 
 export const SortOrder = {

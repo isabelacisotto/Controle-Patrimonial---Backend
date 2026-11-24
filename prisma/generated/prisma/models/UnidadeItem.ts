@@ -184,7 +184,6 @@ export type UnidadeItemWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"UnidadeItem"> | Date | string
   item?: Prisma.XOR<Prisma.ItemScalarRelationFilter, Prisma.ItemWhereInput>
   ambiente?: Prisma.XOR<Prisma.AmbienteNullableScalarRelationFilter, Prisma.AmbienteWhereInput> | null
-  movimentacoes?: Prisma.MovimentacaoListRelationFilter
 }
 
 export type UnidadeItemOrderByWithRelationInput = {
@@ -195,7 +194,6 @@ export type UnidadeItemOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   item?: Prisma.ItemOrderByWithRelationInput
   ambiente?: Prisma.AmbienteOrderByWithRelationInput
-  movimentacoes?: Prisma.MovimentacaoOrderByRelationAggregateInput
 }
 
 export type UnidadeItemWhereUniqueInput = Prisma.AtLeast<{
@@ -209,7 +207,6 @@ export type UnidadeItemWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"UnidadeItem"> | Date | string
   item?: Prisma.XOR<Prisma.ItemScalarRelationFilter, Prisma.ItemWhereInput>
   ambiente?: Prisma.XOR<Prisma.AmbienteNullableScalarRelationFilter, Prisma.AmbienteWhereInput> | null
-  movimentacoes?: Prisma.MovimentacaoListRelationFilter
 }, "id">
 
 export type UnidadeItemOrderByWithAggregationInput = {
@@ -240,7 +237,6 @@ export type UnidadeItemCreateInput = {
   createdAt?: Date | string
   item: Prisma.ItemCreateNestedOneWithoutUnidadesInput
   ambiente?: Prisma.AmbienteCreateNestedOneWithoutUnidadesInput
-  movimentacoes?: Prisma.MovimentacaoCreateNestedManyWithoutUnidadeItemInput
 }
 
 export type UnidadeItemUncheckedCreateInput = {
@@ -249,7 +245,6 @@ export type UnidadeItemUncheckedCreateInput = {
   itemId: string
   ambienteId?: string | null
   createdAt?: Date | string
-  movimentacoes?: Prisma.MovimentacaoUncheckedCreateNestedManyWithoutUnidadeItemInput
 }
 
 export type UnidadeItemUpdateInput = {
@@ -258,7 +253,6 @@ export type UnidadeItemUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   item?: Prisma.ItemUpdateOneRequiredWithoutUnidadesNestedInput
   ambiente?: Prisma.AmbienteUpdateOneWithoutUnidadesNestedInput
-  movimentacoes?: Prisma.MovimentacaoUpdateManyWithoutUnidadeItemNestedInput
 }
 
 export type UnidadeItemUncheckedUpdateInput = {
@@ -267,7 +261,6 @@ export type UnidadeItemUncheckedUpdateInput = {
   itemId?: Prisma.StringFieldUpdateOperationsInput | string
   ambienteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  movimentacoes?: Prisma.MovimentacaoUncheckedUpdateManyWithoutUnidadeItemNestedInput
 }
 
 export type UnidadeItemCreateManyInput = {
@@ -324,11 +317,6 @@ export type UnidadeItemMinOrderByAggregateInput = {
   itemId?: Prisma.SortOrder
   ambienteId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-}
-
-export type UnidadeItemScalarRelationFilter = {
-  is?: Prisma.UnidadeItemWhereInput
-  isNot?: Prisma.UnidadeItemWhereInput
 }
 
 export type UnidadeItemCreateNestedManyWithoutItemInput = {
@@ -419,26 +407,11 @@ export type UnidadeItemUncheckedUpdateManyWithoutAmbienteNestedInput = {
   deleteMany?: Prisma.UnidadeItemScalarWhereInput | Prisma.UnidadeItemScalarWhereInput[]
 }
 
-export type UnidadeItemCreateNestedOneWithoutMovimentacoesInput = {
-  create?: Prisma.XOR<Prisma.UnidadeItemCreateWithoutMovimentacoesInput, Prisma.UnidadeItemUncheckedCreateWithoutMovimentacoesInput>
-  connectOrCreate?: Prisma.UnidadeItemCreateOrConnectWithoutMovimentacoesInput
-  connect?: Prisma.UnidadeItemWhereUniqueInput
-}
-
-export type UnidadeItemUpdateOneRequiredWithoutMovimentacoesNestedInput = {
-  create?: Prisma.XOR<Prisma.UnidadeItemCreateWithoutMovimentacoesInput, Prisma.UnidadeItemUncheckedCreateWithoutMovimentacoesInput>
-  connectOrCreate?: Prisma.UnidadeItemCreateOrConnectWithoutMovimentacoesInput
-  upsert?: Prisma.UnidadeItemUpsertWithoutMovimentacoesInput
-  connect?: Prisma.UnidadeItemWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UnidadeItemUpdateToOneWithWhereWithoutMovimentacoesInput, Prisma.UnidadeItemUpdateWithoutMovimentacoesInput>, Prisma.UnidadeItemUncheckedUpdateWithoutMovimentacoesInput>
-}
-
 export type UnidadeItemCreateWithoutItemInput = {
   id?: string
   estado?: $Enums.EstadoItem
   createdAt?: Date | string
   ambiente?: Prisma.AmbienteCreateNestedOneWithoutUnidadesInput
-  movimentacoes?: Prisma.MovimentacaoCreateNestedManyWithoutUnidadeItemInput
 }
 
 export type UnidadeItemUncheckedCreateWithoutItemInput = {
@@ -446,7 +419,6 @@ export type UnidadeItemUncheckedCreateWithoutItemInput = {
   estado?: $Enums.EstadoItem
   ambienteId?: string | null
   createdAt?: Date | string
-  movimentacoes?: Prisma.MovimentacaoUncheckedCreateNestedManyWithoutUnidadeItemInput
 }
 
 export type UnidadeItemCreateOrConnectWithoutItemInput = {
@@ -490,7 +462,6 @@ export type UnidadeItemCreateWithoutAmbienteInput = {
   estado?: $Enums.EstadoItem
   createdAt?: Date | string
   item: Prisma.ItemCreateNestedOneWithoutUnidadesInput
-  movimentacoes?: Prisma.MovimentacaoCreateNestedManyWithoutUnidadeItemInput
 }
 
 export type UnidadeItemUncheckedCreateWithoutAmbienteInput = {
@@ -498,7 +469,6 @@ export type UnidadeItemUncheckedCreateWithoutAmbienteInput = {
   estado?: $Enums.EstadoItem
   itemId: string
   createdAt?: Date | string
-  movimentacoes?: Prisma.MovimentacaoUncheckedCreateNestedManyWithoutUnidadeItemInput
 }
 
 export type UnidadeItemCreateOrConnectWithoutAmbienteInput = {
@@ -526,54 +496,6 @@ export type UnidadeItemUpdateManyWithWhereWithoutAmbienteInput = {
   data: Prisma.XOR<Prisma.UnidadeItemUpdateManyMutationInput, Prisma.UnidadeItemUncheckedUpdateManyWithoutAmbienteInput>
 }
 
-export type UnidadeItemCreateWithoutMovimentacoesInput = {
-  id?: string
-  estado?: $Enums.EstadoItem
-  createdAt?: Date | string
-  item: Prisma.ItemCreateNestedOneWithoutUnidadesInput
-  ambiente?: Prisma.AmbienteCreateNestedOneWithoutUnidadesInput
-}
-
-export type UnidadeItemUncheckedCreateWithoutMovimentacoesInput = {
-  id?: string
-  estado?: $Enums.EstadoItem
-  itemId: string
-  ambienteId?: string | null
-  createdAt?: Date | string
-}
-
-export type UnidadeItemCreateOrConnectWithoutMovimentacoesInput = {
-  where: Prisma.UnidadeItemWhereUniqueInput
-  create: Prisma.XOR<Prisma.UnidadeItemCreateWithoutMovimentacoesInput, Prisma.UnidadeItemUncheckedCreateWithoutMovimentacoesInput>
-}
-
-export type UnidadeItemUpsertWithoutMovimentacoesInput = {
-  update: Prisma.XOR<Prisma.UnidadeItemUpdateWithoutMovimentacoesInput, Prisma.UnidadeItemUncheckedUpdateWithoutMovimentacoesInput>
-  create: Prisma.XOR<Prisma.UnidadeItemCreateWithoutMovimentacoesInput, Prisma.UnidadeItemUncheckedCreateWithoutMovimentacoesInput>
-  where?: Prisma.UnidadeItemWhereInput
-}
-
-export type UnidadeItemUpdateToOneWithWhereWithoutMovimentacoesInput = {
-  where?: Prisma.UnidadeItemWhereInput
-  data: Prisma.XOR<Prisma.UnidadeItemUpdateWithoutMovimentacoesInput, Prisma.UnidadeItemUncheckedUpdateWithoutMovimentacoesInput>
-}
-
-export type UnidadeItemUpdateWithoutMovimentacoesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  estado?: Prisma.EnumEstadoItemFieldUpdateOperationsInput | $Enums.EstadoItem
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  item?: Prisma.ItemUpdateOneRequiredWithoutUnidadesNestedInput
-  ambiente?: Prisma.AmbienteUpdateOneWithoutUnidadesNestedInput
-}
-
-export type UnidadeItemUncheckedUpdateWithoutMovimentacoesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  estado?: Prisma.EnumEstadoItemFieldUpdateOperationsInput | $Enums.EstadoItem
-  itemId?: Prisma.StringFieldUpdateOperationsInput | string
-  ambienteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
 export type UnidadeItemCreateManyItemInput = {
   id?: string
   estado?: $Enums.EstadoItem
@@ -586,7 +508,6 @@ export type UnidadeItemUpdateWithoutItemInput = {
   estado?: Prisma.EnumEstadoItemFieldUpdateOperationsInput | $Enums.EstadoItem
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ambiente?: Prisma.AmbienteUpdateOneWithoutUnidadesNestedInput
-  movimentacoes?: Prisma.MovimentacaoUpdateManyWithoutUnidadeItemNestedInput
 }
 
 export type UnidadeItemUncheckedUpdateWithoutItemInput = {
@@ -594,7 +515,6 @@ export type UnidadeItemUncheckedUpdateWithoutItemInput = {
   estado?: Prisma.EnumEstadoItemFieldUpdateOperationsInput | $Enums.EstadoItem
   ambienteId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  movimentacoes?: Prisma.MovimentacaoUncheckedUpdateManyWithoutUnidadeItemNestedInput
 }
 
 export type UnidadeItemUncheckedUpdateManyWithoutItemInput = {
@@ -616,7 +536,6 @@ export type UnidadeItemUpdateWithoutAmbienteInput = {
   estado?: Prisma.EnumEstadoItemFieldUpdateOperationsInput | $Enums.EstadoItem
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   item?: Prisma.ItemUpdateOneRequiredWithoutUnidadesNestedInput
-  movimentacoes?: Prisma.MovimentacaoUpdateManyWithoutUnidadeItemNestedInput
 }
 
 export type UnidadeItemUncheckedUpdateWithoutAmbienteInput = {
@@ -624,7 +543,6 @@ export type UnidadeItemUncheckedUpdateWithoutAmbienteInput = {
   estado?: Prisma.EnumEstadoItemFieldUpdateOperationsInput | $Enums.EstadoItem
   itemId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  movimentacoes?: Prisma.MovimentacaoUncheckedUpdateManyWithoutUnidadeItemNestedInput
 }
 
 export type UnidadeItemUncheckedUpdateManyWithoutAmbienteInput = {
@@ -635,35 +553,6 @@ export type UnidadeItemUncheckedUpdateManyWithoutAmbienteInput = {
 }
 
 
-/**
- * Count Type UnidadeItemCountOutputType
- */
-
-export type UnidadeItemCountOutputType = {
-  movimentacoes: number
-}
-
-export type UnidadeItemCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  movimentacoes?: boolean | UnidadeItemCountOutputTypeCountMovimentacoesArgs
-}
-
-/**
- * UnidadeItemCountOutputType without action
- */
-export type UnidadeItemCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the UnidadeItemCountOutputType
-   */
-  select?: Prisma.UnidadeItemCountOutputTypeSelect<ExtArgs> | null
-}
-
-/**
- * UnidadeItemCountOutputType without action
- */
-export type UnidadeItemCountOutputTypeCountMovimentacoesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.MovimentacaoWhereInput
-}
-
 
 export type UnidadeItemSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -673,8 +562,6 @@ export type UnidadeItemSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   createdAt?: boolean
   item?: boolean | Prisma.ItemDefaultArgs<ExtArgs>
   ambiente?: boolean | Prisma.UnidadeItem$ambienteArgs<ExtArgs>
-  movimentacoes?: boolean | Prisma.UnidadeItem$movimentacoesArgs<ExtArgs>
-  _count?: boolean | Prisma.UnidadeItemCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["unidadeItem"]>
 
 export type UnidadeItemSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -709,8 +596,6 @@ export type UnidadeItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArg
 export type UnidadeItemInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   item?: boolean | Prisma.ItemDefaultArgs<ExtArgs>
   ambiente?: boolean | Prisma.UnidadeItem$ambienteArgs<ExtArgs>
-  movimentacoes?: boolean | Prisma.UnidadeItem$movimentacoesArgs<ExtArgs>
-  _count?: boolean | Prisma.UnidadeItemCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UnidadeItemIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   item?: boolean | Prisma.ItemDefaultArgs<ExtArgs>
@@ -726,7 +611,6 @@ export type $UnidadeItemPayload<ExtArgs extends runtime.Types.Extensions.Interna
   objects: {
     item: Prisma.$ItemPayload<ExtArgs>
     ambiente: Prisma.$AmbientePayload<ExtArgs> | null
-    movimentacoes: Prisma.$MovimentacaoPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1130,7 +1014,6 @@ export interface Prisma__UnidadeItemClient<T, Null = never, ExtArgs extends runt
   readonly [Symbol.toStringTag]: "PrismaPromise"
   item<T extends Prisma.ItemDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ItemDefaultArgs<ExtArgs>>): Prisma.Prisma__ItemClient<runtime.Types.Result.GetResult<Prisma.$ItemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   ambiente<T extends Prisma.UnidadeItem$ambienteArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UnidadeItem$ambienteArgs<ExtArgs>>): Prisma.Prisma__AmbienteClient<runtime.Types.Result.GetResult<Prisma.$AmbientePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  movimentacoes<T extends Prisma.UnidadeItem$movimentacoesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UnidadeItem$movimentacoesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MovimentacaoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1580,30 +1463,6 @@ export type UnidadeItem$ambienteArgs<ExtArgs extends runtime.Types.Extensions.In
    */
   include?: Prisma.AmbienteInclude<ExtArgs> | null
   where?: Prisma.AmbienteWhereInput
-}
-
-/**
- * UnidadeItem.movimentacoes
- */
-export type UnidadeItem$movimentacoesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Movimentacao
-   */
-  select?: Prisma.MovimentacaoSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Movimentacao
-   */
-  omit?: Prisma.MovimentacaoOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.MovimentacaoInclude<ExtArgs> | null
-  where?: Prisma.MovimentacaoWhereInput
-  orderBy?: Prisma.MovimentacaoOrderByWithRelationInput | Prisma.MovimentacaoOrderByWithRelationInput[]
-  cursor?: Prisma.MovimentacaoWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.MovimentacaoScalarFieldEnum | Prisma.MovimentacaoScalarFieldEnum[]
 }
 
 /**

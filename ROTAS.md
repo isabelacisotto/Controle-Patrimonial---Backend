@@ -461,15 +461,15 @@ Todas as rotas desta seção exigem autenticação. Não há rotas para editar o
 
 ### `GET /movimentacoes`
 
-Lista movimentações em ordem decrescente de data (`dataMovimentacao`), incluindo `unidadeItem`, o `item` dessa unidade e o `ambiente` (objeto ou `null`).
+Lista movimentações não expiradas em ordem decrescente de data (`dataMovimentacao`), incluindo o item. Registros legados sem `expiresAt` continuam aparecendo.
 
 **Entrada:** sem corpo.
 
-**Saída — `200 OK`:** array de movimentações. Cada registro contém `id`, `unidadeItemId`, `origem`, `destino`, `resp`, `dataMovimentacao` e `unidadeItem`.
+**Saída — `200 OK`:** array de movimentações. Cada registro contém `id`, `itemId`, `quantidade`, `origem`, `destino`, `resp`, `dataMovimentacao`, `expiresAt` (data/hora ISO ou `null`) e `item`. Quando a validade termina, o backend devolve a quantidade à origem automaticamente; os registros permanecem armazenados.
 
 ### `GET /movimentacoes/:id`
 
-Obtém uma movimentação e suas relações (`unidadeItem`, `item` e `ambiente`).
+Obtém uma movimentação e o item relacionado. Registros expirados continuam disponíveis por identificador.
 
 **Parâmetro:** `id` — identificador da movimentação.
 
@@ -479,19 +479,21 @@ Obtém uma movimentação e suas relações (`unidadeItem`, `item` e `ambiente`)
 
 ### `POST /movimentacoes`
 
-Registra uma movimentação para uma unidade de patrimônio existente.
+Registra a transferência de uma quantidade de unidades de um patrimônio existente.
 
 **Entrada (JSON):**
 
 ```json
 {
-  "unidadeItemId": "unidade-uuid",
-  "origem": "Sala 1",
-  "destino": "Sala 2",
-  "resp": "Ana Silva"
+  "itemId": "item-uuid",
+  "origemAmbienteId": "ambiente-origem-uuid",
+  "destinoAmbienteId": "ambiente-destino-uuid",
+  "quantidade": 2,
+  "resp": "Ana Silva",
+  "expiresAt": "2026-12-01T15:00:00.000Z"
 }
 ```
 
-Todos os campos são obrigatórios e devem ser textos não vazios. `unidadeItemId` deve corresponder a uma unidade existente. A data (`dataMovimentacao`) é definida automaticamente pelo banco.
+Todos os campos são obrigatórios; `origemAmbienteId` também pode ser `null` para unidades sem localização. `quantidade` deve ser um inteiro positivo disponível na origem, e `expiresAt` deve ser uma data/hora futura. Ao expirar, a movimentação deixa de aparecer em `GET /movimentacoes`, mas seu registro é preservado e os saldos dos ambientes não são alterados pela expiração. `dataMovimentacao` é definida automaticamente pelo banco.
 
-**Saída — `201 Created`:** a movimentação criada, incluindo seus dados, `unidadeItem` e as relações `item` e `ambiente`.
+**Saída — `201 Created`:** a movimentação criada, incluindo seus dados e o item relacionado.

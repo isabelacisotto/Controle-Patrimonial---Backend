@@ -267,11 +267,6 @@ export type BlocoUncheckedUpdateManyInput = {
   numero?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
-export type BlocoScalarRelationFilter = {
-  is?: Prisma.BlocoWhereInput
-  isNot?: Prisma.BlocoWhereInput
-}
-
 export type BlocoCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   numero?: Prisma.SortOrder
@@ -295,6 +290,19 @@ export type BlocoSumOrderByAggregateInput = {
   numero?: Prisma.SortOrder
 }
 
+export type BlocoScalarRelationFilter = {
+  is?: Prisma.BlocoWhereInput
+  isNot?: Prisma.BlocoWhereInput
+}
+
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
 export type BlocoCreateNestedOneWithoutAmbientesInput = {
   create?: Prisma.XOR<Prisma.BlocoCreateWithoutAmbientesInput, Prisma.BlocoUncheckedCreateWithoutAmbientesInput>
   connectOrCreate?: Prisma.BlocoCreateOrConnectWithoutAmbientesInput
@@ -307,14 +315,6 @@ export type BlocoUpdateOneRequiredWithoutAmbientesNestedInput = {
   upsert?: Prisma.BlocoUpsertWithoutAmbientesInput
   connect?: Prisma.BlocoWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.BlocoUpdateToOneWithWhereWithoutAmbientesInput, Prisma.BlocoUpdateWithoutAmbientesInput>, Prisma.BlocoUncheckedUpdateWithoutAmbientesInput>
-}
-
-export type NullableIntFieldUpdateOperationsInput = {
-  set?: number | null
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
 }
 
 export type BlocoCreateWithoutAmbientesInput = {

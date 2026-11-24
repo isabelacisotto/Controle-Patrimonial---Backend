@@ -277,6 +277,16 @@ export type AmbienteNullableScalarRelationFilter = {
   isNot?: Prisma.AmbienteWhereInput | null
 }
 
+export type AmbienteListRelationFilter = {
+  every?: Prisma.AmbienteWhereInput
+  some?: Prisma.AmbienteWhereInput
+  none?: Prisma.AmbienteWhereInput
+}
+
+export type AmbienteOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
+}
+
 export type AmbienteBlocoIdNomeCompoundUniqueInput = {
   blocoId: string
   nome: string
@@ -301,16 +311,6 @@ export type AmbienteMinOrderByAggregateInput = {
   nome?: Prisma.SortOrder
   blocoId?: Prisma.SortOrder
   responsavel?: Prisma.SortOrder
-}
-
-export type AmbienteListRelationFilter = {
-  every?: Prisma.AmbienteWhereInput
-  some?: Prisma.AmbienteWhereInput
-  none?: Prisma.AmbienteWhereInput
-}
-
-export type AmbienteOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder
 }
 
 export type AmbienteCreateNestedOneWithoutUnidadesInput = {

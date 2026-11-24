@@ -5,6 +5,7 @@ import { ambienteHandler } from "./modules/Ambientes/handlers/ambiente.handler";
 import { blocoHandler } from "./modules/Blocos/handlers/bloco.handler";
 import { patrimonioHandler } from "./modules/Patrimonio/handlers/patrimonio.handler";
 import { movimentacaoHandler } from "./modules/Movimentacao/handlers/movimentacao.handler";
+import { MovimentacaoRepository } from "./modules/Movimentacao/repositories/movimentacao.repository";
 import { getJwtSecret } from "./utils/jwt";
 
 const app = Express();
@@ -12,6 +13,8 @@ const handler = new UserHandler();
 
 getJwtSecret();
 app.use(Express.json());
+
+app.get('teste', (req, res) => console.log("teste"));
 
 // User
 app.post('/login', (req, res) => handler.loginUser(req, res));
@@ -47,5 +50,28 @@ app.put('/unidades/:id/estado', authMiddleware, (req, res) => patrimonioHandler.
 app.get('/movimentacoes', authMiddleware, (req, res) => movimentacaoHandler.listarMovimentacoes(req, res));
 app.get('/movimentacoes/:id', authMiddleware, (req, res) => movimentacaoHandler.obterMovimentacao(req, res));
 app.post('/movimentacoes', authMiddleware, (req, res) => movimentacaoHandler.criarMovimentacao(req, res));
+
+const movimentacaoRepository = new MovimentacaoRepository();
+let processandoExpiracoes = false;
+async function processarExpiracoes(): Promise<void> {
+    if (processandoExpiracoes) return;
+    processandoExpiracoes = true;
+    try {
+        const resultado = await movimentacaoRepository.processarExpiracoes();
+        if (resultado.processadas > 0) {
+            console.log(`${resultado.processadas} movimentação(ões) expirada(s) devolvida(s) à origem.`);
+        }
+        if (resultado.pendentes.length > 0) {
+            console.warn("Movimentações expiradas aguardando saldo ou ambiente válido:", resultado.pendentes);
+        }
+    } catch (error) {
+        console.error("Erro ao processar expirações de movimentações:", error);
+    } finally {
+        processandoExpiracoes = false;
+    }
+}
+
+void processarExpiracoes();
+setInterval(() => void processarExpiracoes(), 15_000).unref();
 
 app.listen(3030, () => console.log("Server is running on port 3030"));

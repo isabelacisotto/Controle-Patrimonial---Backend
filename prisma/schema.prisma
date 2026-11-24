@@ -32,7 +32,8 @@ model Item {
   quantidade Int
   createdAt  DateTime  @default(now())
 
-  unidades UnidadeItem[]
+  unidades      UnidadeItem[]
+  movimentacoes Movimentacao[]
 }
 
 model UnidadeItem {
@@ -44,8 +45,6 @@ model UnidadeItem {
 
   ambienteId String?
   ambiente   Ambiente? @relation(fields: [ambienteId], references: [id])
-
-  movimentacoes Movimentacao[]
 
   createdAt DateTime @default(now())
 }
@@ -69,15 +68,23 @@ model Ambiente {
 }
 
 model Movimentacao {
-  id            String      @id @default(uuid())
-  unidadeItemId String
-  unidadeItem   UnidadeItem @relation(fields: [unidadeItemId], references: [id])
+  id         String   @id @default(uuid())
+  itemId     String
+  item       Item     @relation(fields: [itemId], references: [id], onDelete: Restrict)
+  quantidade Int      @default(1)
 
   origem  String
   destino String
   resp    String
 
   dataMovimentacao DateTime @default(now())
+  expiresAt        DateTime?
+  origemAmbienteId String?
+  destinoAmbienteId String?
+  expirationProcessedAt DateTime?
+
+  @@index([itemId])
+  @@index([expiresAt, expirationProcessedAt])
 }
 
 enum EstadoItem {
