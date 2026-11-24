@@ -14,7 +14,7 @@ const handler = new UserHandler();
 getJwtSecret();
 app.use(Express.json());
 
-app.get('teste', (req, res) => console.log("teste"));
+app.get('teste', (req, res) => res.json({ message: "teste" }));
 
 // User
 app.post('/login', (req, res) => handler.loginUser(req, res));
