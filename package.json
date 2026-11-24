@@ -1,9 +1,10 @@
 {
   "name": "controle-patrimonial---backend",
   "version": "1.0.0",
-  "main": "server.ts",
+  "main": "src/server.ts",
   "scripts": {
     "dev": "tsx watch src/server.ts",
+    "start": "tsx src/server.ts",
     "backfill:unidades": "tsx scripts/backfill-unidades.ts"
   },
   "keywords": [],
