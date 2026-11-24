@@ -14,8 +14,6 @@ const handler = new UserHandler();
 getJwtSecret();
 app.use(Express.json());
 
-app.get('teste', (req, res) => res.json({ message: "teste" }));
-
 // User
 app.post('/login', (req, res) => handler.loginUser(req, res));
 app.post('/register', (req, res) => handler.createUser(req, res));
@@ -74,4 +72,8 @@ async function processarExpiracoes(): Promise<void> {
 void processarExpiracoes();
 setInterval(() => void processarExpiracoes(), 15_000).unref();
 
-app.listen(3030, () => console.log("Server is running on port 3030"));
+const PORT = Number(process.env.PORT) || 3030;
+
+app.listen(PORT, "0.0.0.0", () => {
+    console.log(`Server is running on port ${PORT}`);
+});
