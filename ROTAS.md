@@ -389,6 +389,7 @@ Obrigatórios: `tombamento` (inteiro não negativo), `nome` (texto não vazio), 
 ### `PUT /patrimonios/:id`
 
 Atualiza parcialmente um patrimônio existente. Se `quantidade` aumentar, as novas unidades ficam sem localização, a menos que `ambienteId` seja informado. Unidades já cadastradas não são movidas.
+Se `quantidade` diminuir, a quantidade de unidades cadastradas é reduzida junto com o patrimônio. As unidades excedentes mais recentes são removidas.
 
 **Parâmetro:** `id` — identificador do patrimônio.
 

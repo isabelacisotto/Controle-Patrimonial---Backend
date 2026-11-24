@@ -78,7 +78,9 @@ export class PatrimonioRepository {
     await prisma.$transaction(async (transaction) => {
       const item = await transaction.item.findUnique({
         where: { id },
-        select: { _count: { select: { unidades: true } } },
+        select: {
+          _count: { select: { unidades: true } },
+        },
       });
       if (!item) {
         throw new Error("Patrimônio não encontrado.");
@@ -86,19 +88,31 @@ export class PatrimonioRepository {
 
       if (data.quantidade !== undefined) {
         if (data.quantidade < item._count.unidades) {
-          throw new Error("A quantidade não pode ser menor que o número de unidades já cadastradas.");
-        }
-
-        let pendentes = data.quantidade - item._count.unidades;
-        while (pendentes > 0) {
-          const lote = Math.min(pendentes, 400);
-          await transaction.unidadeItem.createMany({
-            data: Array.from({ length: lote }, () => ({
-              itemId: id,
-              ambienteId: ambienteId ?? null,
-            })),
+          const excedentes = item._count.unidades - data.quantidade;
+          const unidadesParaRemover = await transaction.unidadeItem.findMany({
+            where: { itemId: id },
+            select: { id: true },
+            orderBy: { createdAt: "desc" },
+            take: excedentes,
           });
-          pendentes -= lote;
+
+          await transaction.unidadeItem.deleteMany({
+            where: {
+              id: { in: unidadesParaRemover.map((unidade) => unidade.id) },
+            },
+          });
+        } else if (data.quantidade > item._count.unidades) {
+          let pendentes = data.quantidade - item._count.unidades;
+          while (pendentes > 0) {
+            const lote = Math.min(pendentes, 400);
+            await transaction.unidadeItem.createMany({
+              data: Array.from({ length: lote }, () => ({
+                itemId: id,
+                ambienteId: ambienteId ?? null,
+              })),
+            });
+            pendentes -= lote;
+          }
         }
       }
 
