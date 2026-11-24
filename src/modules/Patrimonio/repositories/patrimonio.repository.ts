@@ -74,6 +74,7 @@ export class PatrimonioRepository {
   }
 
   public async atualizarPatrimonio(id: string, data: AtualizarPatrimonioDTO): Promise<void> {
+    const { ambienteId, ...dadosPatrimonio } = data;
     await prisma.$transaction(async (transaction) => {
       const item = await transaction.item.findUnique({
         where: { id },
@@ -92,13 +93,16 @@ export class PatrimonioRepository {
         while (pendentes > 0) {
           const lote = Math.min(pendentes, 400);
           await transaction.unidadeItem.createMany({
-            data: Array.from({ length: lote }, () => ({ itemId: id })),
+            data: Array.from({ length: lote }, () => ({
+              itemId: id,
+              ambienteId: ambienteId ?? null,
+            })),
           });
           pendentes -= lote;
         }
       }
 
-      await transaction.item.update({ where: { id }, data });
+      await transaction.item.update({ where: { id }, data: dadosPatrimonio });
     });
   }
 

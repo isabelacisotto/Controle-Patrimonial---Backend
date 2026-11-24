@@ -50,6 +50,9 @@ export class PatrimonioService {
   public async atualizarPatrimonio(id: string, data: AtualizarPatrimonioDTO): Promise<void> {
     await this.obterPatrimonioPorId(id);
     validarAtualizacaoPatrimonio(data);
+    if (data.ambienteId && !(await this.patrimonioRepository.ambienteExiste(data.ambienteId))) {
+      throw new Error("Ambiente não encontrado.");
+    }
     await this.patrimonioRepository.atualizarPatrimonio(id, data);
   }
 

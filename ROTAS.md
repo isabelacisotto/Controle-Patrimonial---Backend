@@ -388,7 +388,7 @@ Obrigatórios: `tombamento` (inteiro não negativo), `nome` (texto não vazio), 
 
 ### `PUT /patrimonios/:id`
 
-Atualiza parcialmente um patrimônio existente.
+Atualiza parcialmente um patrimônio existente. Se `quantidade` aumentar, as novas unidades ficam sem localização, a menos que `ambienteId` seja informado. Unidades já cadastradas não são movidas.
 
 **Parâmetro:** `id` — identificador do patrimônio.
 
@@ -401,7 +401,16 @@ Atualiza parcialmente um patrimônio existente.
 }
 ```
 
-Os campos enviados são validados com as mesmas regras da criação. Um corpo vazio é aceito.
+Para vincular unidades adicionadas a um ambiente:
+
+```json
+{
+  "quantidade": 2,
+  "ambienteId": "id-do-ambiente"
+}
+```
+
+`ambienteId` é opcional e se aplica apenas às unidades criadas pelo aumento da quantidade; use `null` ou omita o campo para deixá-las sem localização. Os campos enviados são validados com as mesmas regras da criação, e um corpo vazio é aceito.
 
 **Saída — `200 OK`:**
 

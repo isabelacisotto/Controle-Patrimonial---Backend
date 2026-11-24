@@ -47,7 +47,7 @@ export interface CriarPatrimonioDTO {
   ambienteId?: string | null;
 }
 
-export type AtualizarPatrimonioDTO = Partial<Omit<CriarPatrimonioDTO, "ambienteId">>;
+export type AtualizarPatrimonioDTO = Partial<CriarPatrimonioDTO>;
 
 export interface AtualizarEstadoUnidadeDTO {
   estado: EstadoItem;
