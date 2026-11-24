@@ -1082,6 +1082,7 @@ export type BlocoCreateManyArgs<ExtArgs extends runtime.Types.Extensions.Interna
    * The data used to create many Blocos.
    */
   data: Prisma.BlocoCreateManyInput | Prisma.BlocoCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**
@@ -1100,6 +1101,7 @@ export type BlocoCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extension
    * The data used to create many Blocos.
    */
   data: Prisma.BlocoCreateManyInput | Prisma.BlocoCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**

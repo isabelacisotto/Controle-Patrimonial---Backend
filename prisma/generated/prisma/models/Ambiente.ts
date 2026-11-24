@@ -436,6 +436,7 @@ export type AmbienteCreateOrConnectWithoutBlocoInput = {
 
 export type AmbienteCreateManyBlocoInputEnvelope = {
   data: Prisma.AmbienteCreateManyBlocoInput | Prisma.AmbienteCreateManyBlocoInput[]
+  skipDuplicates?: boolean
 }
 
 export type AmbienteUpsertWithWhereUniqueWithoutBlocoInput = {
@@ -1241,6 +1242,7 @@ export type AmbienteCreateManyArgs<ExtArgs extends runtime.Types.Extensions.Inte
    * The data used to create many Ambientes.
    */
   data: Prisma.AmbienteCreateManyInput | Prisma.AmbienteCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**
@@ -1259,6 +1261,7 @@ export type AmbienteCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extens
    * The data used to create many Ambientes.
    */
   data: Prisma.AmbienteCreateManyInput | Prisma.AmbienteCreateManyInput[]
+  skipDuplicates?: boolean
   /**
    * Choose, which related nodes to fetch as well
    */

@@ -572,6 +572,7 @@ export type MovimentacaoCreateOrConnectWithoutItemInput = {
 
 export type MovimentacaoCreateManyItemInputEnvelope = {
   data: Prisma.MovimentacaoCreateManyItemInput | Prisma.MovimentacaoCreateManyItemInput[]
+  skipDuplicates?: boolean
 }
 
 export type MovimentacaoUpsertWithWhereUniqueWithoutItemInput = {
@@ -1417,6 +1418,7 @@ export type MovimentacaoCreateManyArgs<ExtArgs extends runtime.Types.Extensions.
    * The data used to create many Movimentacaos.
    */
   data: Prisma.MovimentacaoCreateManyInput | Prisma.MovimentacaoCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**
@@ -1435,6 +1437,7 @@ export type MovimentacaoCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Ex
    * The data used to create many Movimentacaos.
    */
   data: Prisma.MovimentacaoCreateManyInput | Prisma.MovimentacaoCreateManyInput[]
+  skipDuplicates?: boolean
   /**
    * Choose, which related nodes to fetch as well
    */

@@ -428,6 +428,7 @@ export type UnidadeItemCreateOrConnectWithoutItemInput = {
 
 export type UnidadeItemCreateManyItemInputEnvelope = {
   data: Prisma.UnidadeItemCreateManyItemInput | Prisma.UnidadeItemCreateManyItemInput[]
+  skipDuplicates?: boolean
 }
 
 export type UnidadeItemUpsertWithWhereUniqueWithoutItemInput = {
@@ -478,6 +479,7 @@ export type UnidadeItemCreateOrConnectWithoutAmbienteInput = {
 
 export type UnidadeItemCreateManyAmbienteInputEnvelope = {
   data: Prisma.UnidadeItemCreateManyAmbienteInput | Prisma.UnidadeItemCreateManyAmbienteInput[]
+  skipDuplicates?: boolean
 }
 
 export type UnidadeItemUpsertWithWhereUniqueWithoutAmbienteInput = {
@@ -1282,6 +1284,7 @@ export type UnidadeItemCreateManyArgs<ExtArgs extends runtime.Types.Extensions.I
    * The data used to create many UnidadeItems.
    */
   data: Prisma.UnidadeItemCreateManyInput | Prisma.UnidadeItemCreateManyInput[]
+  skipDuplicates?: boolean
 }
 
 /**
@@ -1300,6 +1303,7 @@ export type UnidadeItemCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Ext
    * The data used to create many UnidadeItems.
    */
   data: Prisma.UnidadeItemCreateManyInput | Prisma.UnidadeItemCreateManyInput[]
+  skipDuplicates?: boolean
   /**
    * Choose, which related nodes to fetch as well
    */
